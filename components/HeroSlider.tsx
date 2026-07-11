@@ -127,12 +127,13 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
     setActiveSlide((prev) => (prev - 1 + SLIDE_DATA.length) % SLIDE_DATA.length);
   };
 
-  // Autoplay slider every 15 seconds (Instagram-story style duration)
+  // Autoplay slider every 15 seconds (Instagram story duration)
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timer = setTimeout(() => {
       setActiveSlide((prev) => (prev + 1) % SLIDE_DATA.length);
     }, 15000);
-    return () => clearInterval(interval);
+
+    return () => clearTimeout(timer);
   }, [activeSlide]);
 
   const scrollToSection = (id: string) => {
@@ -143,8 +144,8 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[720px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
-      {/* Hidden Preloader Box: Forces browser & Next.js cache to immediately download all 7 luxury images */}
+    <section className="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
+      {/* Preload all 7 vehicle images instantly into browser memory */}
       <div aria-hidden="true" className="hidden">
         {SLIDE_DATA.map((slide) => (
           <Image
@@ -158,35 +159,39 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
         ))}
       </div>
 
-      {/* Single-Element Keyed Background Wallpaper Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#111111]">
-        <div
-          key={activeSlide}
-          className="absolute inset-0 animate-fade-in pointer-events-none"
-        >
-          <Image
-            src={SLIDE_DATA[activeSlide].image}
-            alt={SLIDE_DATA[activeSlide].alt}
-            fill
-            priority={true}
-            sizes="100vw"
-            className="object-cover brightness-[0.65] animate-slide-zoom"
-          />
-          {/* Soft dark vignette gradients for readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/30 to-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/20 to-transparent" />
-        </div>
+      {/* Background Images with Crossfade */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {SLIDE_DATA.map((slide, idx) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out pointer-events-none ${
+              idx === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              priority={true}
+              sizes="100vw"
+              className="object-cover brightness-[0.7]"
+            />
+            {/* Soft dark vignette gradients for readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/20" />
+          </div>
+        ))}
       </div>
 
       {/* Top Header Navigation Overlay (z-30) */}
-      <header className="relative z-30 w-full flex items-center justify-between px-6 md:px-16 py-6 bg-black/20 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+      <header className="relative z-30 w-full flex items-center justify-between px-6 md:px-16 py-6 bg-black/10 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         <div className="flex items-center gap-4">
           <button
             type="button"
             aria-label="Open navigation menu"
-            className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-2 rounded-full hover:bg-white/5 active:scale-95 border-0 bg-transparent"
+            className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >
-            <MenuAlt04 className="w-7 h-7" />
+            <MenuAlt04 className="w-8 h-8" />
           </button>
         </div>
 
@@ -197,13 +202,10 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-body font-bold text-white text-lg md:text-xl tracking-[0.25em] hover:text-cooliocns-gold transition-colors uppercase block"
+            className="font-body-l font-[number:var(--body-l-font-weight)] text-white text-[length:var(--body-l-font-size)] tracking-[var(--body-l-letter-spacing)] leading-[var(--body-l-line-height)] [font-style:var(--body-l-font-style)] hover:text-cooliocns-gold transition-colors uppercase block"
           >
             RAPHAEL AUTOS
           </a>
-          <span className="font-body text-[9px] text-gray-400 tracking-[0.35em] uppercase block mt-[-2px]">
-            Bespoke Motorcars
-          </span>
         </div>
 
         <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8">
@@ -213,15 +215,15 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               e.preventDefault();
               scrollToSection("inventory");
             }}
-            className="hidden sm:inline-block font-body text-xs tracking-[0.2em] text-white hover:text-cooliocns-gold transition-colors cursor-pointer py-1 uppercase font-medium active:scale-95 border-0 bg-transparent p-0"
+            className="hidden sm:inline-block box-border font-body text-xs tracking-[0.15em] text-white hover:text-cooliocns-gold transition-colors cursor-pointer bg-transparent border-0 p-0"
           >
             MODELS
           </button>
 
-          {/* Search bar */}
+          {/* Original search bar design */}
           <form
             role="search"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-black/40 focus-within:border-cooliocns-gold transition-all max-w-[130px] md:max-w-[210px]"
+            className="flex items-center gap-2 px-2 py-1 border-b border-white/30 focus-within:border-cooliocns-gold transition-colors max-w-[120px] md:max-w-[200px]"
             onSubmit={(e) => e.preventDefault()}
           >
             <label htmlFor={searchId} className="inline-flex items-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors">
@@ -239,37 +241,34 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               }}
               placeholder="SEARCH"
               aria-label="Search vehicles"
-              className="bg-transparent border-none outline-none font-body text-xs text-white placeholder:text-white/40 tracking-wider w-full"
+              className="bg-transparent border-none outline-none font-body text-xs text-white placeholder:text-white/50 tracking-wider w-full"
             />
           </form>
 
           <button
             type="button"
             aria-label="Open user account"
-            className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-2 rounded-full hover:bg-white/5 active:scale-95 border-0 bg-transparent"
+            className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >
-            <User03 className="w-7 h-7" />
+            <User03 className="w-8 h-8" />
           </button>
         </nav>
       </header>
 
       {/* Main Slide Content Area (z-30) */}
-      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pb-10 md:pb-16 pointer-events-auto">
-        <div className="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-10">
+      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pb-16 md:pb-24 pointer-events-auto">
+        <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-12">
           {/* Slide Text & Actions */}
-          <div key={activeSlide} className="max-w-3xl flex flex-col items-start gap-5 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/10 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-cooliocns-gold animate-pulse" />
-              <span className="font-body text-[11px] uppercase tracking-[0.25em] text-cooliocns-gold font-medium">
-                {SLIDE_DATA[activeSlide].eyebrow}
-              </span>
-            </div>
+          <div key={activeSlide} className="max-w-2xl flex flex-col items-start gap-6 animate-fade-in">
+            <span className="font-body text-xs uppercase tracking-[0.3em] text-cooliocns-gold font-bold">
+              {SLIDE_DATA[activeSlide].eyebrow}
+            </span>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white leading-[1.1] font-light tracking-wide drop-shadow-md">
+            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-white leading-tight font-light select-none">
               {SLIDE_DATA[activeSlide].headline}
             </h1>
 
-            <p className="font-body text-sm md:text-base text-gray-300 leading-relaxed font-light tracking-wide max-w-xl drop-shadow">
+            <p className="font-body text-sm text-gray-300 leading-relaxed font-light tracking-wide max-w-xl">
               {SLIDE_DATA[activeSlide].supportingText}
             </p>
 
@@ -293,65 +292,66 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             </div>
           </div>
 
-          {/* High-Z Navigation Chevrons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10 lg:border-t-0 pointer-events-auto">
-            <button
-              type="button"
-              onClick={handlePrev}
-              aria-label="Previous vehicle"
-              className="box-border inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md hover:border-cooliocns-gold hover:bg-cooliocns-gold/20 hover:text-cooliocns-gold transition-all cursor-pointer text-white active:scale-90 border-solid"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            <button
-              type="button"
-              onClick={handleNext}
-              aria-label="Next vehicle"
-              className="box-border inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md hover:border-cooliocns-gold hover:bg-cooliocns-gold/20 hover:text-cooliocns-gold transition-all cursor-pointer text-white active:scale-90 border-solid"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Instagram Story-Style Segmented Progress Indicator Bar (z-30) */}
-        <div
-          className="w-full flex items-center gap-2 pt-2 pointer-events-auto"
-          aria-label="Story slide duration progress"
-        >
-          {SLIDE_DATA.map((slide, idx) => {
-            const isCompleted = idx < activeSlide;
-            const isCurrent = idx === activeSlide;
-
-            return (
+          {/* Slider Controls with Chevrons and Segmented Instagram-Story Loader */}
+          <div className="flex flex-col items-center gap-3 self-center md:self-end pointer-events-auto w-full max-w-[240px] md:max-w-[280px]">
+            <div className="flex items-center justify-between w-full">
               <button
-                key={slide.id}
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setActiveSlide(idx);
-                }}
-                aria-label={`Jump to slide ${idx + 1}: ${slide.eyebrow}`}
-                className="group relative flex-1 h-4 py-1.5 cursor-pointer focus:outline-none border-0 bg-transparent p-0"
+                onClick={handlePrev}
+                aria-label="Previous vehicle"
+                className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
               >
-                {/* Background track */}
-                <div className="w-full h-1 rounded-full bg-white/20 overflow-hidden group-hover:h-1.5 transition-all duration-300">
-                  {/* Fill progress */}
-                  {isCompleted && (
-                    <div className="h-full w-full bg-cooliocns-gold" />
-                  )}
-                  {isCurrent && (
-                    <div
-                      key={activeSlide}
-                      className="h-full bg-cooliocns-gold animate-story-progress"
-                    />
-                  )}
-                </div>
+                <ChevronLeft className="w-4 h-4" />
               </button>
-            );
-          })}
+
+              <span className="font-body text-xs tracking-widest text-white/80 select-none">
+                {activeSlide + 1} <span className="text-white/40">/</span> {SLIDE_DATA.length}
+              </span>
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next vehicle"
+                className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Segmented Instagram-story horizontal loaders (1 bar per slide) */}
+            <div className="flex items-center gap-1.5 w-full h-1" aria-label="Story slide duration progress">
+              {SLIDE_DATA.map((slide, idx) => {
+                const isCompleted = idx < activeSlide;
+                const isCurrent = idx === activeSlide;
+
+                return (
+                  <button
+                    key={slide.id}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setActiveSlide(idx);
+                    }}
+                    aria-label={`Jump to slide ${idx + 1}`}
+                    className="group relative flex-1 h-3 py-1 cursor-pointer focus:outline-none border-0 bg-transparent p-0 flex items-center"
+                  >
+                    <div className="w-full h-1 rounded-full bg-white/20 overflow-hidden group-hover:h-1.5 transition-all duration-300">
+                      {isCompleted && (
+                        <div className="w-full h-full bg-cooliocns-gold" />
+                      )}
+                      {isCurrent && (
+                        <div
+                          key={activeSlide}
+                          className="h-full bg-cooliocns-gold animate-story-progress"
+                        />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

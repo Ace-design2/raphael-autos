@@ -5,6 +5,11 @@
   --background: #000000;
   --foreground: #ffffff;
 
+  /* Font family declarations */
+  --font-display: "Gilda Display", serif;
+  --font-body: "Space Mono", monospace;
+  --font-body-l: "Space Mono", monospace;
+
   /* Typography variables from Figma design */
   --display-font-weight: 400;
   --display-font-size: clamp(2.25rem, 5vw, 3.5rem); /* Responsive 36px to 56px */
@@ -29,10 +34,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
-  /* Fonts */
-  --font-display: "Gilda Display", serif;
-  --font-body: "Space Mono", monospace;
-  --font-body-l: "Space Mono", monospace;
+  /* Fonts mapped via variables */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-body-l: var(--font-body-l);
 
   /* Brand Colors */
   --color-cooliocns-gold: #c9a227;
@@ -51,7 +56,14 @@ body {
 
 /* Custom resets & helper classes */
 .all-unset {
-  all: unset;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  box-sizing: border-box;
 }
 
 /* Custom scrollbar to look sleek and premium */
@@ -68,4 +80,19 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #e2b72f;
 }
+
+/* Instagram Story-style Progress Animation */
+@keyframes storyProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-story-progress {
+  animation: storyProgress 15s linear forwards;
+}
+
 

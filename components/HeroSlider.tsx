@@ -84,11 +84,11 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
     return () => clearTimeout(timer);
   }, [activeSlide]);
 
-  // Autoplay slider every 8 seconds
+  // Autoplay slider every 15 seconds (Instagram-story style duration)
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 8000);
+    }, 15000);
     return () => clearInterval(interval);
   }, [activeSlide, isTransitioning]);
 
@@ -139,7 +139,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
         <div className="text-center">
           <a
             href="#"
-            className="font-display text-xl md:text-2xl tracking-[0.25em] text-white hover:text-cooliocns-gold transition-colors font-semibold"
+            className="font-body-l font-[number:var(--body-l-font-weight)] text-white text-[length:var(--body-l-font-size)] tracking-[var(--body-l-letter-spacing)] leading-[var(--body-l-line-height)] [font-style:var(--body-l-font-style)] hover:text-cooliocns-gold transition-colors uppercase"
           >
             RAPHAEL AUTOS
           </a>
@@ -263,13 +263,11 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
-            {/* Elegant slider progress line */}
-            <div className="w-[140px] h-[1px] bg-white/20 relative overflow-hidden">
+            {/* Instagram story-style horizontal duration line */}
+            <div className="w-[140px] h-0.5 bg-white/20 relative overflow-hidden">
               <div
-                className="absolute top-0 left-0 h-full bg-cooliocns-gold transition-all duration-1000 ease-out"
-                style={{
-                  width: `${((activeSlide + 1) / SLIDE_DATA.length) * 100}%`,
-                }}
+                key={activeSlide}
+                className="absolute top-0 left-0 h-full bg-cooliocns-gold animate-story-progress"
               />
             </div>
           </div>

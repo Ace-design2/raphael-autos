@@ -53,10 +53,10 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`all-unset box-border inline-flex items-center justify-center gap-1.5 px-6 py-2.5 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group ${variantClasses} ${className}`}
+      className={`all-unset box-border inline-flex items-center justify-center gap-1 px-6 py-2 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group ${variantClasses} ${className}`}
       {...dataAttributes}
     >
-      <span className={`relative w-fit font-body font-[number:var(--body-font-weight)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] ${textClasses}`}>
+      <span className={`relative w-fit mt-[-1.00px] font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] transition-colors duration-300 ${textClasses}`}>
         {children || label}
       </span>
     </button>

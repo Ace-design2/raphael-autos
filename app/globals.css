@@ -92,4 +92,31 @@ body {
   animation: storyProgress 15s linear forwards;
 }
 
+/* Single-slide keyed fade-in & Ken Burns zoom */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-slide-zoom {
+  animation: slideZoom 15s ease-out forwards;
+}
+
 

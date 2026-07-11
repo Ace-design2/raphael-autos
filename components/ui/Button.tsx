@@ -31,19 +31,19 @@ export const Button = ({
   switch (variant) {
     case "solid-gold":
       variantClasses = "bg-[#c9a227] text-white hover:bg-[#a6821b] focus-visible:outline-[#c9a227]";
-      textClasses = "text-white";
+      textClasses = "text-inherit";
       break;
     case "solid-black":
       variantClasses = "bg-[#111111] text-white hover:bg-[#222222] focus-visible:outline-[#111111]";
-      textClasses = "text-white";
+      textClasses = "text-inherit";
       break;
     case "outline-white":
       variantClasses = "border border-solid border-white text-white hover:bg-white hover:text-[#111111] focus-visible:outline-white";
-      textClasses = "text-white group-hover:text-[#111111]";
+      textClasses = "text-inherit";
       break;
     case "outline-black":
       variantClasses = "border border-solid border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-white focus-visible:outline-[#111111]";
-      textClasses = "text-[#111111] group-hover:text-white";
+      textClasses = "text-inherit";
       break;
   }
 
@@ -53,7 +53,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`box-border inline-flex items-center justify-center gap-1 px-6 py-2 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group ${variantClasses} ${className}`}
+      className={`box-border inline-flex items-center justify-center gap-1 px-6 py-2 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClasses} ${className}`}
       {...dataAttributes}
     >
       <span className={`relative w-fit mt-[-1.00px] font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] transition-colors duration-300 ${textClasses}`}>

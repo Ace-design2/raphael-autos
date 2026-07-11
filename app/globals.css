@@ -1,26 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+
+  /* Typography variables from Figma design */
+  --display-font-weight: 400;
+  --display-font-size: clamp(2.25rem, 5vw, 3.5rem); /* Responsive 36px to 56px */
+  --display-letter-spacing: -0.02em;
+  --display-line-height: 1.2;
+  --display-font-style: normal;
+
+  --body-font-weight: 400;
+  --body-font-size: 0.875rem; /* 14px */
+  --body-letter-spacing: 0.05em;
+  --body-line-height: 1.6;
+  --body-font-style: normal;
+
+  --body-l-font-weight: 400;
+  --body-l-font-size: 1rem; /* 16px */
+  --body-l-letter-spacing: 0.15em;
+  --body-l-line-height: 1.5;
+  --body-l-font-style: normal;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  
+  /* Fonts */
+  --font-display: "Gilda Display", serif;
+  --font-body: "Space Mono", monospace;
+  --font-body-l: "Space Mono", monospace;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Brand Colors */
+  --color-cooliocns-gold: #c9a227;
+  --color-cooliocns-primary-color: #111111;
+  --color-cooliocns-white: #ffffff;
+  --color-gray-900: #1a1a1a;
+  --color-gray-100: #f5f5f5;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), monospace;
+  overflow-x: hidden;
 }
+
+/* Custom resets & helper classes */
+.all-unset {
+  all: unset;
+}
+
+/* Custom scrollbar to look sleek and premium */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a227;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e2b72f;
+}
+

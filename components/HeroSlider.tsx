@@ -1,0 +1,282 @@
+"use client";
+
+import React, { useState, useEffect, useId } from "react";
+import Image from "next/image";
+import { Button } from "./ui/Button";
+import {
+  MenuAlt04,
+  SearchMagnifyingGlass,
+  User03,
+  ChevronLeft,
+  ChevronRight,
+  DummyCircle,
+  DummyCircleSmall,
+} from "./icons";
+
+interface SlideData {
+  id: number;
+  eyebrow: string;
+  headline: string;
+  supportingText: string;
+  primaryCta: string;
+  secondaryCta: string;
+  image: string;
+  alt: string;
+}
+
+const SLIDE_DATA: SlideData[] = [
+  {
+    id: 0,
+    eyebrow: "Curated Luxury Automobiles",
+    headline: "Where Exceptional Automobiles Find Their Next Owner",
+    supportingText: "At Raphael Autos, every vehicle is thoughtfully selected for its craftsmanship, provenance, and performance. From timeless grand tourers to modern supercars and luxury SUVs, our collection is curated for those who appreciate engineering without compromise.",
+    primaryCta: "Explore Inventory",
+    secondaryCta: "Schedule a Viewing",
+    image: "/images/hero_porsche_911.png",
+    alt: "Silver Porsche 911 parked outside minimalist concrete villa at twilight",
+  },
+  {
+    id: 1,
+    eyebrow: "The Pinnacle of Craftsmanship",
+    headline: "Elegance and Authority in Equal Measure",
+    supportingText: "Experience the whisper-quiet power and bespoke artistry of our premier Rolls-Royce collection. Crafted for those who understand that true luxury isn't about being noticed—it's about never being forgotten.",
+    primaryCta: "View Masterpieces",
+    secondaryCta: "Private Consultation",
+    image: "/images/hero_rolls_royce.png",
+    alt: "Dark emerald Rolls-Royce Spectre parked on cobblestone driveway of a grand manor house at sunset",
+  },
+  {
+    id: 2,
+    eyebrow: "Uncompromising Performance",
+    headline: "Sculpted Power & Timeless Grand Tourers",
+    supportingText: "Unleash raw, sophisticated power with the Aston Martin DB12. A perfect marriage of advanced British engineering and elegant design, curated specifically for the discerning driver.",
+    primaryCta: "Discover GTs",
+    secondaryCta: "Request Test Drive",
+    image: "/images/hero_aston_martin.png",
+    alt: "Satin gray Aston Martin DB12 parked in modern minimalist concrete showroom",
+  },
+];
+
+interface HeroSliderProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+}
+
+export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): React.JSX.Element => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const searchId = useId();
+
+  const handleNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActiveSlide((prev) => (prev + 1) % SLIDE_DATA.length);
+  };
+
+  const handlePrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActiveSlide((prev) => (prev - 1 + SLIDE_DATA.length) % SLIDE_DATA.length);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsTransitioning(false), 800);
+    return () => clearTimeout(timer);
+  }, [activeSlide]);
+
+  // Autoplay slider every 8 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [activeSlide, isTransitioning]);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section className="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-between">
+      {/* Background Images with Crossfade */}
+      <div className="absolute inset-0 z-0">
+        {SLIDE_DATA.map((slide, idx) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === activeSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+            } transform duration-[2000ms]`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              priority={idx === 0}
+              className="object-cover brightness-[0.7]"
+            />
+            {/* Soft dark vignette gradients for readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/20" />
+          </div>
+        ))}
+      </div>
+
+      {/* Header Overlay */}
+      <header className="relative z-10 w-full flex items-center justify-between px-6 md:px-16 py-6 bg-black/10 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            className="all-unset box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1"
+          >
+            <MenuAlt04 className="w-8 h-8" />
+          </button>
+        </div>
+
+        <div className="text-center">
+          <a
+            href="#"
+            className="font-display text-xl md:text-2xl tracking-[0.25em] text-white hover:text-cooliocns-gold transition-colors font-semibold"
+          >
+            RAPHAEL AUTOS
+          </a>
+        </div>
+
+        <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8">
+          <button
+            type="button"
+            onClick={() => scrollToSection("inventory")}
+            className="hidden sm:inline-block all-unset box-border font-body text-xs tracking-[0.15em] text-white hover:text-cooliocns-gold transition-colors cursor-pointer"
+          >
+            MODELS
+          </button>
+
+          {/* Search bar */}
+          <form
+            role="search"
+            className="flex items-center gap-2 px-2 py-1 border-b border-white/30 focus-within:border-cooliocns-gold transition-colors max-w-[120px] md:max-w-[200px]"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <label htmlFor={searchId} className="inline-flex items-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors">
+              <SearchMagnifyingGlass className="w-4 h-4" />
+            </label>
+            <input
+              id={searchId}
+              type="search"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                // If user starts searching, automatically scroll to inventory to show results
+                if (e.target.value.length === 1) {
+                  scrollToSection("inventory");
+                }
+              }}
+              placeholder="SEARCH"
+              aria-label="Search vehicles"
+              className="bg-transparent border-none outline-none font-body text-xs text-white placeholder:text-white/50 tracking-wider w-full"
+            />
+          </form>
+
+          <button
+            type="button"
+            aria-label="Open user account"
+            className="all-unset box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1"
+          >
+            <User03 className="w-8 h-8" />
+          </button>
+        </nav>
+      </header>
+
+      {/* Main Slide Content Area */}
+      <div className="relative z-10 flex-1 flex flex-col justify-end px-6 md:px-20 pb-16 md:pb-24">
+        <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+          {/* Slide Texts */}
+          <div className="max-w-2xl flex flex-col items-start gap-6">
+            <span className="font-body text-xs uppercase tracking-[0.3em] text-cooliocns-gold font-bold animate-fade-in">
+              {SLIDE_DATA[activeSlide].eyebrow}
+            </span>
+            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-white leading-tight font-light select-none">
+              {SLIDE_DATA[activeSlide].headline}
+            </h1>
+            <p className="font-body text-sm text-gray-300 leading-relaxed font-light tracking-wide max-w-xl">
+              {SLIDE_DATA[activeSlide].supportingText}
+            </p>
+            <div className="flex flex-wrap items-center gap-4 mt-4">
+              <Button
+                variant="solid-gold"
+                label={SLIDE_DATA[activeSlide].primaryCta}
+                onClick={() => scrollToSection("inventory")}
+              />
+              <Button
+                variant="outline-white"
+                label={SLIDE_DATA[activeSlide].secondaryCta}
+                onClick={() => scrollToSection("about")}
+              />
+            </div>
+          </div>
+
+          {/* Slider Controls */}
+          <div className="flex flex-col items-center gap-3 self-center md:self-end">
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous vehicle"
+                className="all-unset box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <div className="inline-flex items-center gap-1.5 h-9" aria-label="Vehicle carousel indicators">
+                {SLIDE_DATA.map((slide, idx) =>
+                  idx === activeSlide ? (
+                    <DummyCircle
+                      key={slide.id}
+                      className="w-8 h-8 transition-all duration-300 transform scale-110"
+                    />
+                  ) : (
+                    <button
+                      key={slide.id}
+                      onClick={() => {
+                        if (isTransitioning) return;
+                        setIsTransitioning(true);
+                        setActiveSlide(idx);
+                      }}
+                      className="all-unset inline-flex items-center justify-center w-6 h-6 hover:scale-125 transition-transform"
+                      aria-label={`Go to slide ${idx + 1}`}
+                    >
+                      <DummyCircleSmall className="w-6 h-6" />
+                    </button>
+                  )
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next vehicle"
+                className="all-unset box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+            {/* Elegant slider progress line */}
+            <div className="w-[140px] h-[1px] bg-white/20 relative overflow-hidden">
+              <div
+                className="absolute top-0 left-0 h-full bg-cooliocns-gold transition-all duration-1000 ease-out"
+                style={{
+                  width: `${((activeSlide + 1) / SLIDE_DATA.length) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSlider;

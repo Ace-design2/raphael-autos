@@ -11,7 +11,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white selection:bg-cooliocns-gold selection:text-white">
+    <div className="flex flex-col min-h-screen bg-white text-[#111111] selection:bg-cooliocns-gold selection:text-white">
       <main className="flex-1 flex flex-col">
         {/* Header & Hero Carousel Slider */}
         <HeroSlider searchQuery={searchQuery} setSearchQuery={setSearchQuery} />

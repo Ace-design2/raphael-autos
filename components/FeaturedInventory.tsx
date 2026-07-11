@@ -91,7 +91,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
   };
 
   return (
-    <section className="bg-black py-24 px-6 md:px-20 border-t border-white/5 relative z-10" id="inventory">
+    <section className="bg-white py-24 px-6 md:px-20 border-t border-black/10 relative z-10" id="inventory">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -99,11 +99,11 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
             <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
               Showcase
             </span>
-            <h2 className="font-display text-3xl md:text-5xl text-white font-light tracking-wide">
+            <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-wide">
               Featured Inventory
             </h2>
           </div>
-          <p className="font-body text-sm text-gray-400 max-w-md leading-relaxed tracking-wide">
+          <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
             A handpicked selection of exceptional automobiles currently available through Raphael Autos.
           </p>
         </div>
@@ -114,10 +114,10 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
             {filteredVehicles.map((car) => (
               <div
                 key={car.id}
-                className="group flex flex-col bg-gray-900/10 border border-white/5 hover:border-white/10 transition-colors duration-500 overflow-hidden"
+                className="group flex flex-col bg-gray-50/80 border border-black/10 hover:border-cooliocns-gold hover:bg-white hover:shadow-xl transition-all duration-500 overflow-hidden"
               >
                 {/* Image Container with Hover zoom */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-950">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100">
                   <Image
                     src={car.image}
                     alt={car.name}
@@ -125,54 +125,54 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   {/* Subtle hover gradient overlay */}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-500" />
                 </div>
 
                 {/* Details Container */}
                 <div className="p-6 md:p-8 flex flex-col gap-6 flex-1">
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="font-body text-[10px] text-cooliocns-gold tracking-widest block uppercase mb-1">
+                      <span className="font-body text-[10px] text-cooliocns-gold tracking-widest block uppercase mb-1 font-bold">
                         {car.type}
                       </span>
-                      <h3 className="font-display text-2xl text-white font-light">
+                      <h3 className="font-display text-2xl text-[#111111] font-medium">
                         {car.name}
                       </h3>
                       <span className="font-body text-xs text-gray-500">
                         Model Year {car.year}
                       </span>
                     </div>
-                    <span className="font-display text-xl text-white font-medium">
+                    <span className="font-display text-xl text-[#111111] font-bold">
                       {formatPrice(car.price)}
                     </span>
                   </div>
 
                   {/* Divider line */}
-                  <div className="h-[1px] bg-white/10" />
+                  <div className="h-[1px] bg-black/10" />
 
                   {/* Specifications */}
                   <div className="grid grid-cols-3 gap-2">
                     <div>
-                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase">
+                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase font-semibold">
                         Engine
                       </span>
-                      <span className="font-body text-xs text-white/90">
+                      <span className="font-body text-xs text-[#111111] font-medium">
                         {car.engine}
                       </span>
                     </div>
                     <div>
-                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase">
+                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase font-semibold">
                         Power
                       </span>
-                      <span className="font-body text-xs text-white/90">
+                      <span className="font-body text-xs text-[#111111] font-medium">
                         {car.hp} HP
                       </span>
                     </div>
                     <div>
-                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase">
+                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase font-semibold">
                         Gearbox
                       </span>
-                      <span className="font-body text-xs text-white/90">
+                      <span className="font-body text-xs text-[#111111] font-medium">
                         {car.transmission}
                       </span>
                     </div>
@@ -181,19 +181,19 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
                   {/* Action buttons */}
                   <div className="flex items-center gap-4 mt-2">
                     <Button variant="solid-gold" label="Inquire" className="flex-1" />
-                    <Button variant="outline-white" label="Details" className="flex-1" />
+                    <Button variant="outline-black" label="Details" className="flex-1" />
                   </div>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 border border-white/5 bg-gray-900/10">
-            <p className="font-body text-gray-400 text-sm tracking-wide">
+          <div className="text-center py-20 border border-black/10 bg-gray-50">
+            <p className="font-body text-gray-600 text-sm tracking-wide">
               No vehicles matched your search query. Try searching for "Porsche", "Rolls", "Vantage", or "2024".
             </p>
             <Button
-              variant="outline-white"
+              variant="outline-black"
               label="Clear Search"
               className="mt-6"
               onClick={() => (window.location.hash = "#inventory")}
@@ -203,7 +203,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
 
         {/* View all button */}
         <div className="mt-16 text-center">
-          <Button variant="outline-white" label="View Full Inventory" className="px-10" />
+          <Button variant="outline-black" label="View Full Inventory" className="px-10" />
         </div>
       </div>
     </section>

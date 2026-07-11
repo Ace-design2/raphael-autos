@@ -256,8 +256,8 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       </header>
 
       {/* Main Slide Content Area (z-30) */}
-      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pb-16 md:pb-24 pointer-events-auto">
-        <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-12">
+      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pb-8 md:pb-12 pointer-events-auto gap-8 md:gap-12">
+        <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           {/* Slide Text & Actions */}
           <div key={activeSlide} className="max-w-2xl flex flex-col items-start gap-6 animate-fade-in">
             <span className="font-body text-xs uppercase tracking-[0.3em] text-cooliocns-gold font-bold">
@@ -292,66 +292,60 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             </div>
           </div>
 
-          {/* Slider Controls with Chevrons and Segmented Instagram-Story Loader */}
-          <div className="flex flex-col items-center gap-3 self-center md:self-end pointer-events-auto w-full max-w-[240px] md:max-w-[280px]">
-            <div className="flex items-center justify-between w-full">
-              <button
-                type="button"
-                onClick={handlePrev}
-                aria-label="Previous vehicle"
-                className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
+          {/* Chevron Buttons (icons on the right beside each other in the same position) */}
+          <div className="flex items-center gap-4 self-center md:self-end pointer-events-auto">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous vehicle"
+              className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
 
-              <span className="font-body text-xs tracking-widest text-white/80 select-none">
-                {activeSlide + 1} <span className="text-white/40">/</span> {SLIDE_DATA.length}
-              </span>
-
-              <button
-                type="button"
-                onClick={handleNext}
-                aria-label="Next vehicle"
-                className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Segmented Instagram-story horizontal loaders (1 bar per slide) */}
-            <div className="flex items-center gap-1.5 w-full h-1" aria-label="Story slide duration progress">
-              {SLIDE_DATA.map((slide, idx) => {
-                const isCompleted = idx < activeSlide;
-                const isCurrent = idx === activeSlide;
-
-                return (
-                  <button
-                    key={slide.id}
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setActiveSlide(idx);
-                    }}
-                    aria-label={`Jump to slide ${idx + 1}`}
-                    className="group relative flex-1 h-3 py-1 cursor-pointer focus:outline-none border-0 bg-transparent p-0 flex items-center"
-                  >
-                    <div className="w-full h-1 rounded-full bg-white/20 overflow-hidden group-hover:h-1.5 transition-all duration-300">
-                      {isCompleted && (
-                        <div className="w-full h-full bg-cooliocns-gold" />
-                      )}
-                      {isCurrent && (
-                        <div
-                          key={activeSlide}
-                          className="h-full bg-cooliocns-gold animate-story-progress"
-                        />
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next vehicle"
+              className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
+        </div>
+
+        {/* Segmented Instagram-story horizontal loaders spanning full width across the bottom */}
+        <div className="flex items-center gap-2 w-full h-1 pointer-events-auto" aria-label="Story slide duration progress">
+          {SLIDE_DATA.map((slide, idx) => {
+            const isCompleted = idx < activeSlide;
+            const isCurrent = idx === activeSlide;
+
+            return (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveSlide(idx);
+                }}
+                aria-label={`Jump to slide ${idx + 1}`}
+                className="group relative flex-1 h-3 py-1 cursor-pointer focus:outline-none border-0 bg-transparent p-0 flex items-center"
+              >
+                <div className="w-full h-1 rounded-full bg-white/20 overflow-hidden group-hover:h-1.5 transition-all duration-300">
+                  {isCompleted && (
+                    <div className="w-full h-full bg-cooliocns-gold" />
+                  )}
+                  {isCurrent && (
+                    <div
+                      key={activeSlide}
+                      className="h-full bg-cooliocns-gold animate-story-progress"
+                    />
+                  )}
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

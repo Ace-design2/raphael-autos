@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #111111;
 
   /* Font family declarations */
   --font-display: "Gilda Display", serif;
@@ -68,7 +68,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #111111;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
   background: #c9a227;

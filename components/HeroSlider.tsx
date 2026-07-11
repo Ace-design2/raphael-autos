@@ -55,6 +55,46 @@ const SLIDE_DATA: SlideData[] = [
     image: "/images/hero_aston_martin.png",
     alt: "Satin gray Aston Martin DB12 parked in modern minimalist concrete showroom",
   },
+  {
+    id: 3,
+    eyebrow: "Track-Bred Precision",
+    headline: "The Porsche 911 GT3 RS Performance",
+    supportingText: "Built for the racetrack, refined for the road. The GT3 RS features an aerodynamic body and a high-revving naturally-aspirated engine designed to deliver pure, unadulterated performance.",
+    primaryCta: "Explore Performance",
+    secondaryCta: "Inquire Now",
+    image: "/images/car_porsche_gt3.png",
+    alt: "Chalk gray Porsche 911 GT3 RS profile studio shot",
+  },
+  {
+    id: 4,
+    eyebrow: "Modern Sanctuary",
+    headline: "The Whispered Authority of Rolls-Royce Ghost",
+    supportingText: "A minimalist expression of ultimate luxury. The Rolls-Royce Ghost combines clean, contemporary design with a powerful V12 engine and a ride quality that feels like floating on air.",
+    primaryCta: "Request Ghost",
+    secondaryCta: "Private Viewing",
+    image: "/images/car_rr_ghost.png",
+    alt: "Tempest gray Rolls-Royce Ghost sedan profile studio shot",
+  },
+  {
+    id: 5,
+    eyebrow: "Sculpted Athlete",
+    headline: "The Exhilarating British Sports Coupe",
+    supportingText: "Engineered for real drivers. The Aston Martin Vantage is a statement of speed, style, and raw emotion, delivering an unfiltered connection between driver and tarmac.",
+    primaryCta: "Request Vantage",
+    secondaryCta: "Configure Build",
+    image: "/images/car_aston_vantage.png",
+    alt: "British Racing Green Aston Martin Vantage coupe profile studio shot",
+  },
+  {
+    id: 6,
+    eyebrow: "Ultimate Capability",
+    headline: "The Refined Stature of Range Rover SV",
+    supportingText: "Luxury that knows no bounds. The Range Rover SV Autobiography offers executive comfort, advanced off-road engineering, and a commanding presence on any terrain.",
+    primaryCta: "Explore SUV",
+    secondaryCta: "Bespoke Order",
+    image: "/images/car_range_rover.png",
+    alt: "Satin black Range Rover SV Autobiography profile studio shot",
+  },
 ];
 
 interface HeroSliderProps {
@@ -64,33 +104,23 @@ interface HeroSliderProps {
 
 export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): React.JSX.Element => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const searchId = useId();
 
   const handleNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
     setActiveSlide((prev) => (prev + 1) % SLIDE_DATA.length);
   };
 
   const handlePrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
     setActiveSlide((prev) => (prev - 1 + SLIDE_DATA.length) % SLIDE_DATA.length);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsTransitioning(false), 800);
-    return () => clearTimeout(timer);
-  }, [activeSlide]);
 
   // Autoplay slider every 15 seconds (Instagram-story style duration)
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNext();
+      setActiveSlide((prev) => (prev + 1) % SLIDE_DATA.length);
     }, 15000);
     return () => clearInterval(interval);
-  }, [activeSlide, isTransitioning]);
+  }, [activeSlide]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -102,19 +132,20 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
   return (
     <section className="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-between">
       {/* Background Images with Crossfade */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         {SLIDE_DATA.map((slide, idx) => (
           <div
             key={slide.id}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              idx === activeSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+              idx === activeSlide ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-105 pointer-events-none"
             } transform duration-[2000ms]`}
           >
             <Image
               src={slide.image}
               alt={slide.alt}
               fill
-              priority={idx === 0}
+              priority={true}
+              sizes="100vw"
               className="object-cover brightness-[0.7]"
             />
             {/* Soft dark vignette gradients for readability */}
@@ -240,11 +271,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                   ) : (
                     <button
                       key={slide.id}
-                      onClick={() => {
-                        if (isTransitioning) return;
-                        setIsTransitioning(true);
-                        setActiveSlide(idx);
-                      }}
+                      onClick={() => setActiveSlide(idx)}
                       className="all-unset inline-flex items-center justify-center w-6 h-6 hover:scale-125 transition-transform"
                       aria-label={`Go to slide ${idx + 1}`}
                     >

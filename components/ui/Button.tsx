@@ -30,20 +30,20 @@ export const Button = ({
 
   switch (variant) {
     case "solid-gold":
-      variantClasses = "bg-cooliocns-gold text-cooliocns-white hover:bg-[#b08d20] hover:scale-[1.02] focus-visible:outline-cooliocns-gold";
-      textClasses = "text-cooliocns-white";
+      variantClasses = "bg-[#c9a227] text-white hover:bg-[#a6821b] focus-visible:outline-[#c9a227]";
+      textClasses = "text-white";
       break;
     case "solid-black":
-      variantClasses = "bg-cooliocns-primary-color text-cooliocns-white hover:bg-[#222222] hover:scale-[1.02] focus-visible:outline-cooliocns-primary-color";
-      textClasses = "text-cooliocns-white";
+      variantClasses = "bg-[#111111] text-white hover:bg-[#222222] focus-visible:outline-[#111111]";
+      textClasses = "text-white";
       break;
     case "outline-white":
-      variantClasses = "border border-solid border-cooliocns-white text-cooliocns-white hover:bg-cooliocns-white hover:text-cooliocns-primary-color focus-visible:outline-cooliocns-white";
-      textClasses = "text-cooliocns-white group-hover:text-cooliocns-primary-color transition-colors duration-300";
+      variantClasses = "border border-solid border-white text-white hover:bg-white hover:text-[#111111] focus-visible:outline-white";
+      textClasses = "text-white group-hover:text-[#111111]";
       break;
     case "outline-black":
-      variantClasses = "border border-solid border-cooliocns-primary-color text-cooliocns-primary-color hover:bg-cooliocns-primary-color hover:text-cooliocns-white focus-visible:outline-cooliocns-primary-color";
-      textClasses = "text-cooliocns-primary-color group-hover:text-cooliocns-white transition-colors duration-300";
+      variantClasses = "border border-solid border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-white focus-visible:outline-[#111111]";
+      textClasses = "text-[#111111] group-hover:text-white";
       break;
   }
 
@@ -53,7 +53,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`all-unset box-border inline-flex items-center justify-center gap-1 px-6 py-2 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group ${variantClasses} ${className}`}
+      className={`box-border inline-flex items-center justify-center gap-1 px-6 py-2 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group ${variantClasses} ${className}`}
       {...dataAttributes}
     >
       <span className={`relative w-fit mt-[-1.00px] font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] transition-colors duration-300 ${textClasses}`}>

@@ -102,7 +102,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
             {filteredVehicles.map((car) => (
               <div
                 key={car.id}
-                className="w-full bg-white outline outline-1 outline-offset-[-1px] outline-[#111111] flex flex-col justify-start items-start overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                className="w-full bg-white outline outline-1 outline-offset-[-1px] outline-[#111111] flex flex-col justify-start items-start overflow-hidden group transition-colors duration-300"
               >
                 {/* Image Container */}
                 <div className="self-stretch aspect-[16/10] relative overflow-hidden bg-gray-100">

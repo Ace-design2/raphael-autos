@@ -70,7 +70,7 @@ export const FeaturedCollections = (): React.JSX.Element => {
           {COLLECTIONS.map((col) => (
             <div
               key={col.id}
-              className="group border border-black/10 bg-gray-50/80 p-8 flex flex-col justify-between min-h-[220px] transition-all duration-500 ease-in-out hover:border-cooliocns-gold hover:bg-white hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
+              className="group border border-black/10 bg-gray-50/80 p-8 flex flex-col justify-between min-h-[220px] transition-colors duration-500 ease-in-out hover:border-cooliocns-gold hover:bg-white relative overflow-hidden"
             >
               {/* Decorative faint Roman numeral background on hover */}
               <span className="absolute right-4 top-2 text-8xl font-display text-black/[0.03] select-none group-hover:text-black/[0.06] transition-colors duration-500">

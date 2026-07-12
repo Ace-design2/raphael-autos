@@ -276,6 +276,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               <Button
                 variant="solid-gold"
                 label={SLIDE_DATA[activeSlide].primaryCta}
+                className="w-[180px] sm:w-[200px] justify-center"
                 onClick={(e) => {
                   e?.preventDefault();
                   scrollToSection("inventory");
@@ -284,6 +285,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               <Button
                 variant="outline-white"
                 label={SLIDE_DATA[activeSlide].secondaryCta}
+                className="w-[180px] sm:w-[200px] justify-center"
                 onClick={(e) => {
                   e?.preventDefault();
                   scrollToSection("about");

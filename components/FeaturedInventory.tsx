@@ -54,18 +54,6 @@ const VEHICLES_MOCK: Vehicle[] = [
     image: "/images/car_aston_vantage.png",
     link: "#",
   },
-  {
-    id: "range-rover-sv",
-    year: 2024,
-    name: "Range Rover SV Autobiography",
-    type: "Luxury SUV",
-    engine: "4.4L Twin-Turbo V8",
-    hp: 606,
-    transmission: "8-Speed Auto",
-    price: 245000,
-    image: "/images/car_range_rover.png",
-    link: "#",
-  },
 ];
 
 interface FeaturedInventoryProps {
@@ -110,78 +98,95 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
 
         {/* Dynamic List */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-8">
             {filteredVehicles.map((car) => (
               <div
                 key={car.id}
-                className="group flex flex-col bg-gray-50/80 border border-black/10 hover:border-cooliocns-gold hover:bg-white hover:shadow-xl transition-all duration-500 overflow-hidden"
+                className="w-full bg-white outline outline-1 outline-offset-[-1px] outline-[#111111] flex flex-col justify-start items-start overflow-hidden group hover:shadow-2xl transition-all duration-300"
               >
-                {/* Image Container with Hover zoom */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100">
+                {/* Image Container */}
+                <div className="self-stretch aspect-[16/10] relative overflow-hidden bg-gray-100">
                   <Image
                     src={car.image}
                     alt={car.name}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  {/* Subtle hover gradient overlay */}
                   <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-500" />
                 </div>
 
                 {/* Details Container */}
-                <div className="p-6 md:p-8 flex flex-col gap-6 flex-1">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="font-body text-[10px] text-cooliocns-gold tracking-widest block uppercase mb-1 font-bold">
+                <div className="w-full p-6 md:p-8 flex flex-col justify-start items-start gap-8 flex-1">
+                  {/* Top Indicators Row */}
+                  <div className="inline-flex justify-start items-center gap-4">
+                    <div className="flex justify-center items-center gap-1.5">
+                      <div className="w-3.5 h-3.5 relative overflow-hidden flex items-center justify-center">
+                        <div className="w-2.5 h-2 outline outline-[1px] outline-offset-[-0.40px] outline-[#111111]" />
+                      </div>
+                      <div className="justify-start text-[#111111] text-xs font-normal font-body">
+                        {car.year}
+                      </div>
+                    </div>
+                    <div className="flex justify-center items-center gap-1.5">
+                      <div className="w-3.5 h-3.5 relative overflow-hidden flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 rounded-full outline outline-[1px] outline-offset-[-0.40px] outline-[#111111]" />
+                      </div>
+                      <div className="justify-start text-[#111111] text-xs font-normal font-body uppercase">
                         {car.type}
-                      </span>
-                      <h3 className="font-display text-2xl text-[#111111] font-medium">
-                        {car.name}
-                      </h3>
-                      <span className="font-body text-xs text-gray-500">
-                        Model Year {car.year}
-                      </span>
+                      </div>
                     </div>
-                    <span className="font-display text-xl text-[#111111] font-bold">
+                  </div>
+
+                  {/* Title and Price Stacked */}
+                  <div className="flex flex-col justify-start items-start gap-2 w-full">
+                    <h3 className="w-full justify-start text-[#111111] text-xl xl:text-2xl font-bold font-body leading-tight">
+                      {car.name}
+                    </h3>
+                    <div className="w-full justify-start text-[#111111] text-xl xl:text-2xl font-bold font-body">
                       {formatPrice(car.price)}
-                    </span>
+                    </div>
                   </div>
 
-                  {/* Divider line */}
-                  <div className="h-[1px] bg-black/10" />
-
-                  {/* Specifications */}
-                  <div className="grid grid-cols-3 gap-2">
-                    <div>
-                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase font-semibold">
+                  {/* Inline Specifications */}
+                  <div className="inline-flex justify-start items-center gap-6 md:gap-8 flex-wrap">
+                    <div className="inline-flex flex-col justify-start items-start gap-1.5">
+                      <div className="justify-start text-[#111111]/70 text-xs font-normal font-body">
                         Engine
-                      </span>
-                      <span className="font-body text-xs text-[#111111] font-medium">
+                      </div>
+                      <div className="justify-start text-[#111111] text-sm md:text-base font-bold font-body uppercase">
                         {car.engine}
-                      </span>
+                      </div>
                     </div>
-                    <div>
-                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase font-semibold">
-                        Power
-                      </span>
-                      <span className="font-body text-xs text-[#111111] font-medium">
-                        {car.hp} HP
-                      </span>
-                    </div>
-                    <div>
-                      <span className="font-body text-[9px] text-gray-500 tracking-wider block uppercase font-semibold">
-                        Gearbox
-                      </span>
-                      <span className="font-body text-xs text-[#111111] font-medium">
+                    <div className="inline-flex flex-col justify-start items-start gap-1.5">
+                      <div className="justify-start text-[#111111]/70 text-xs font-normal font-body">
+                        Transmission
+                      </div>
+                      <div className="justify-start text-[#111111] text-sm md:text-base font-bold font-body uppercase">
                         {car.transmission}
-                      </span>
+                      </div>
+                    </div>
+                    <div className="inline-flex flex-col justify-start items-start gap-1.5">
+                      <div className="justify-start text-[#111111]/70 text-xs font-normal font-body">
+                        Power
+                      </div>
+                      <div className="justify-start text-[#111111] text-sm md:text-base font-bold font-body uppercase">
+                        {car.hp} HP
+                      </div>
                     </div>
                   </div>
 
-                  {/* Action buttons */}
-                  <div className="flex items-center gap-4 mt-2">
-                    <Button variant="solid-gold" label="Inquire" className="flex-1" />
-                    <Button variant="outline-black" label="Details" className="flex-1" />
+                  {/* Action Buttons Row */}
+                  <div className="self-stretch flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 pt-2 mt-auto">
+                    <Button
+                      variant="solid-gold"
+                      label="Inquire"
+                      className="flex-1 justify-center py-2.5 text-base font-bold"
+                    />
+                    <Button
+                      variant="outline-black"
+                      label="View Details"
+                      className="flex-1 justify-center py-2.5 text-base font-bold"
+                    />
                   </div>
                 </div>
               </div>

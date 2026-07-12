@@ -109,6 +109,7 @@ interface HeroSliderProps {
 
 export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): React.JSX.Element => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchId = useId();
 
   const handleNext = (e?: React.MouseEvent) => {
@@ -189,6 +190,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
           <button
             type="button"
             aria-label="Open navigation menu"
+            onClick={() => setIsMenuOpen(true)}
             className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >
             <MenuAlt04 className="w-8 h-8" />
@@ -254,6 +256,144 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
           </button>
         </nav>
       </header>
+
+      {/* Sliding Navigation Drawer Overlay (z-50) */}
+      <div
+        className={`fixed inset-0 z-50 bg-black/20 transition-opacity duration-500 flex justify-start ${
+          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <div
+          className={`w-full max-w-[580px] h-full min-h-screen px-10 md:px-20 py-6 bg-black/40 md:bg-black/20 backdrop-blur-3xl flex flex-col justify-between items-start text-white border-r border-white/10 shadow-2xl transition-transform duration-500 ease-out overflow-y-auto ${
+            isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Top Section */}
+          <div className="self-stretch flex flex-col justify-start items-start gap-9">
+            {/* Header / Brand & Close Button */}
+            <div className="self-stretch flex items-center justify-between">
+              <div className="inline-flex justify-start items-center gap-2.5">
+                <div className="w-9 h-9 relative overflow-hidden flex items-center justify-center">
+                  <div className="w-4 h-4 outline outline-[2.50px] outline-offset-[-1.25px] outline-cooliocns-gold" />
+                </div>
+                <span className="text-white text-lg font-bold font-body tracking-wider">
+                  RAPHAEL AUTOS
+                </span>
+              </div>
+              <button
+                type="button"
+                aria-label="Close navigation menu"
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 text-white/70 hover:text-cooliocns-gold transition-colors text-xl font-body font-bold cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Main Links */}
+            <nav className="self-stretch flex flex-col justify-start items-start gap-3 mt-2">
+              {[
+                { label: "INVENTORY", id: "inventory" },
+                { label: "BUY", id: "collections" },
+                { label: "LEASE", id: "collections" },
+                { label: "VEHICLE SOURCING", id: "about" },
+                { label: "SELL & TRADE IN", id: "about" },
+              ].map((item, idx) => (
+                <a
+                  key={idx}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    scrollToSection(item.id);
+                  }}
+                  className="self-stretch inline-flex justify-start items-center gap-6 group py-1.5 cursor-pointer"
+                >
+                  <span className="flex-1 text-right justify-start text-white group-hover:text-cooliocns-gold transition-colors text-lg font-normal font-body tracking-wider">
+                    {item.label}
+                  </span>
+                  <div className="w-6 h-6 relative overflow-hidden flex items-center justify-center">
+                    <div className="w-1.5 h-3.5 outline outline-2 outline-offset-[-1px] outline-white group-hover:outline-cooliocns-gold transition-colors" />
+                  </div>
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* Middle Section: ABOUT / CONTACT */}
+          <div className="self-stretch flex flex-col justify-start items-start gap-3 my-6">
+            {[
+              { label: "ABOUT", id: "about" },
+              { label: "CONTACT", id: "footer" },
+            ].map((item, idx) => (
+              <a
+                key={idx}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  scrollToSection(item.id);
+                }}
+                className="self-stretch inline-flex justify-start items-center gap-6 group py-1 cursor-pointer"
+              >
+                <span className="flex-1 text-right justify-start text-white group-hover:text-cooliocns-gold transition-colors text-lg font-normal font-body tracking-wider">
+                  {item.label}
+                </span>
+              </a>
+            ))}
+          </div>
+
+          {/* Bottom Info Section */}
+          <div className="self-stretch pb-6 md:pb-9 flex flex-col justify-start items-start gap-3 border-t border-white/10 pt-6">
+            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+              <div className="self-stretch inline-flex justify-start items-center gap-6">
+                <div className="flex-1 text-right justify-start text-white text-lg font-normal font-body">
+                  VISIT OUR SHOWROOM
+                </div>
+              </div>
+              <div className="self-stretch inline-flex justify-start items-center gap-6">
+                <div className="flex-1 text-right justify-start text-white text-xs font-normal font-body">
+                  By appointment - Monday - Saturday
+                </div>
+              </div>
+            </div>
+
+            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+              <div className="self-stretch inline-flex justify-start items-center gap-6">
+                <div className="flex-1 text-right justify-start text-white text-lg font-normal font-body">
+                  Email
+                </div>
+              </div>
+              <div className="self-stretch inline-flex justify-start items-center gap-6">
+                <a
+                  href="mailto:hello@raphaelautos.com"
+                  className="flex-1 text-right justify-start text-white/70 hover:text-cooliocns-gold transition-colors text-xs font-normal font-body"
+                >
+                  hello@raphaelautos.com
+                </a>
+              </div>
+            </div>
+
+            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+              <div className="self-stretch inline-flex justify-start items-center gap-6">
+                <div className="flex-1 text-right justify-start text-white text-lg font-normal font-body">
+                  Phone
+                </div>
+              </div>
+              <div className="self-stretch inline-flex justify-start items-center gap-6">
+                <a
+                  href="tel:+2340000000000"
+                  className="flex-1 text-right justify-start text-white/70 hover:text-cooliocns-gold transition-colors text-xs font-normal font-body"
+                >
+                  +234 (000) 000 0000
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Main Slide Content Area (z-30) */}
       <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pb-8 md:pb-12 pointer-events-auto gap-8 md:gap-12">

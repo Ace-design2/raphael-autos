@@ -5,10 +5,13 @@ import Image from "next/image";
 import { Button } from "./ui/Button";
 import {
   MenuAlt04,
+  CloseMD,
   SearchMagnifyingGlass,
   User03,
   ChevronLeft,
   ChevronRight,
+  MailIcon,
+  PhoneIcon,
 } from "./icons";
 
 interface SlideData {
@@ -286,9 +289,9 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                 type="button"
                 aria-label="Close navigation menu"
                 onClick={() => setIsMenuOpen(false)}
-                className="p-2 text-white/70 hover:text-cooliocns-gold transition-colors text-xl font-body font-bold cursor-pointer"
+                className="p-2 text-white/70 hover:text-cooliocns-gold transition-colors cursor-pointer"
               >
-                ✕
+                <CloseMD className="w-8 h-8" />
               </button>
             </div>
 
@@ -315,7 +318,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                     {item.label}
                   </span>
                   <div className="w-6 h-6 relative overflow-hidden flex items-center justify-center">
-                    <div className="w-1.5 h-3.5 outline outline-2 outline-offset-[-1px] outline-white group-hover:outline-cooliocns-gold transition-colors" />
+                    <ChevronRight className="w-6 h-6 text-white group-hover:text-cooliocns-gold transition-colors" />
                   </div>
                 </a>
               ))}
@@ -362,8 +365,9 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
               <div className="self-stretch inline-flex justify-start items-center gap-6">
-                <div className="flex-1 text-right justify-start text-white text-lg font-normal font-body">
-                  Email
+                <div className="flex-1 justify-end flex items-center gap-2 text-white text-lg font-normal font-body">
+                  <MailIcon className="w-5 h-5 text-cooliocns-gold" />
+                  <span>Email</span>
                 </div>
               </div>
               <div className="self-stretch inline-flex justify-start items-center gap-6">
@@ -378,8 +382,9 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
             <div className="self-stretch flex flex-col justify-start items-start gap-1">
               <div className="self-stretch inline-flex justify-start items-center gap-6">
-                <div className="flex-1 text-right justify-start text-white text-lg font-normal font-body">
-                  Phone
+                <div className="flex-1 justify-end flex items-center gap-2 text-white text-lg font-normal font-body">
+                  <PhoneIcon className="w-5 h-5 text-cooliocns-gold" />
+                  <span>Phone</span>
                 </div>
               </div>
               <div className="self-stretch inline-flex justify-start items-center gap-6">

@@ -3,12 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "./ui/Button";
+import { CarAuto, ChevronRightDuo } from "./icons";
 
 interface Vehicle {
   id: string;
   year: number;
   name: string;
   type: string;
+  km: string;
   engine: string;
   hp: number;
   transmission: string;
@@ -23,6 +25,7 @@ const VEHICLES_MOCK: Vehicle[] = [
     year: 2024,
     name: "Porsche 911 GT3 RS",
     type: "Performance Icon",
+    km: "1,200 KM",
     engine: "4.0L Flat-6",
     hp: 518,
     transmission: "7-Speed PDK",
@@ -35,6 +38,7 @@ const VEHICLES_MOCK: Vehicle[] = [
     year: 2023,
     name: "Rolls-Royce Ghost",
     type: "Luxury Sedan",
+    km: "450 KM",
     engine: "6.75L V12",
     hp: 563,
     transmission: "8-Speed Auto",
@@ -47,6 +51,7 @@ const VEHICLES_MOCK: Vehicle[] = [
     year: 2025,
     name: "Aston Martin Vantage",
     type: "Grand Tourer",
+    km: "150 KM",
     engine: "4.0L Twin-Turbo V8",
     hp: 656,
     transmission: "8-Speed Auto",
@@ -118,7 +123,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
                 {/* Details Container */}
                 <div className="w-full p-6 md:p-8 flex flex-col justify-start items-start gap-8 flex-1">
                   {/* Top Indicators Row */}
-                  <div className="inline-flex justify-start items-center gap-4">
+                  <div className="inline-flex justify-start items-center gap-4 flex-wrap">
                     <div className="flex justify-center items-center gap-1.5">
                       <div className="w-3.5 h-3.5 relative overflow-hidden flex items-center justify-center">
                         <div className="w-2.5 h-2 outline outline-[1px] outline-offset-[-0.40px] outline-[#111111]" />
@@ -128,11 +133,15 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
                       </div>
                     </div>
                     <div className="flex justify-center items-center gap-1.5">
-                      <div className="w-3.5 h-3.5 relative overflow-hidden flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full outline outline-[1px] outline-offset-[-0.40px] outline-[#111111]" />
-                      </div>
+                      <CarAuto className="w-3.5 h-3.5 text-[#111111]" />
                       <div className="justify-start text-[#111111] text-xs font-normal font-body uppercase">
                         {car.type}
+                      </div>
+                    </div>
+                    <div className="flex justify-center items-center gap-1.5">
+                      <ChevronRightDuo className="w-3.5 h-3.5 text-[#111111]" />
+                      <div className="justify-start text-[#111111] text-xs font-normal font-body uppercase font-bold">
+                        {car.km}
                       </div>
                     </div>
                   </div>

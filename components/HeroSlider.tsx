@@ -114,36 +114,22 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
   const [activeSlide, setActiveSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const searchId = useId();
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const heroSectionHeight = window.innerHeight - 80;
 
-      if (currentScrollY > 50) {
+      if (currentScrollY > heroSectionHeight) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
-
-      if (currentScrollY < 0) return;
-
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsNavbarHidden(true);
-      } else if (currentScrollY < lastScrollY.current) {
-        setIsNavbarHidden(false);
-      }
-
-      if (currentScrollY <= 100) {
-        setIsNavbarHidden(false);
-      }
-
-      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -257,14 +243,10 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
       {/* Top Header Navigation Overlay (fixed z-40) */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-in-out ${
-          isNavbarHidden && !isMenuOpen
-            ? "-translate-y-full opacity-0 pointer-events-none"
-            : "translate-y-0 opacity-100 pointer-events-auto"
-        } ${
+        className={`fixed top-0 left-0 right-0 z-40 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-in-out translate-y-0 opacity-100 pointer-events-auto ${
           isScrolled
-            ? "py-3.5 bg-[#111111]/90 backdrop-blur-3xl [-webkit-backdrop-filter:blur(48px)] border-b border-white/20 shadow-xl"
-            : "py-5 bg-[#111111]/70 backdrop-blur-2xl [-webkit-backdrop-filter:blur(32px)] border-b border-white/10 shadow-md"
+            ? "py-3 bg-black/35 backdrop-blur-3xl [-webkit-backdrop-filter:blur(48px)] border-b border-white/10 shadow-lg"
+            : "py-6 bg-transparent border-b border-transparent shadow-none"
         }`}
       >
         <div className="flex items-center gap-4">

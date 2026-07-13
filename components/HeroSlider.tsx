@@ -180,7 +180,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
   };
 
   const getWaterfallClass = (index: number) => {
-    const delays = [
+    const openDelays = [
       "delay-[100ms]",
       "delay-[180ms]",
       "delay-[260ms]",
@@ -193,11 +193,25 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       "delay-[820ms]",
       "delay-[900ms]",
     ];
-    const delayClass = delays[index] || "delay-[900ms]";
-    return `transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+    const closeDelays = [
+      "delay-[300ms]",
+      "delay-[270ms]",
+      "delay-[240ms]",
+      "delay-[210ms]",
+      "delay-[180ms]",
+      "delay-[150ms]",
+      "delay-[120ms]",
+      "delay-[90ms]",
+      "delay-[60ms]",
+      "delay-[30ms]",
+      "delay-[0ms]",
+    ];
+    const openDelay = openDelays[index] || "delay-[900ms]";
+    const closeDelay = closeDelays[index] || "delay-[0ms]";
+    return `transition-all transform ${
       isMenuOpen
-        ? `translate-x-0 opacity-100 ${delayClass}`
-        : "-translate-x-24 sm:-translate-x-32 opacity-0 duration-300 delay-0"
+        ? `duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] translate-x-0 opacity-100 ${openDelay}`
+        : `duration-[350ms] ease-in -translate-x-24 sm:-translate-x-32 opacity-0 ${closeDelay}`
     }`;
   };
 
@@ -327,13 +341,15 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       {/* Sliding Navigation Drawer Overlay (z-50) */}
       <div
         className={`fixed inset-0 z-50 bg-black/40 backdrop-blur-sm transition-opacity duration-500 flex justify-start ${
-          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          isMenuOpen
+            ? "opacity-100 pointer-events-auto delay-0"
+            : "opacity-0 pointer-events-none delay-[350ms]"
         }`}
         onClick={() => setIsMenuOpen(false)}
       >
         <div
           className={`w-full max-w-[580px] h-full min-h-screen px-6 sm:px-10 md:px-20 py-6 bg-[#0f0f0f]/85 md:bg-[#0f0f0f]/80 backdrop-blur-3xl [-webkit-backdrop-filter:blur(64px)] flex flex-col justify-between items-start text-white border-r border-white/15 shadow-[0_0_80px_rgba(0,0,0,0.9)] transition-transform duration-500 ease-out overflow-y-auto ${
-            isMenuOpen ? "translate-x-0" : "-translate-x-full"
+            isMenuOpen ? "translate-x-0 delay-0" : "-translate-x-full delay-[350ms]"
           }`}
           onClick={(e) => e.stopPropagation()}
         >

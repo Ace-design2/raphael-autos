@@ -47,16 +47,20 @@ export const Button = ({
       break;
   }
 
+  const hasPx = className.includes("px-") || className.includes("p-");
+  const hasPy = className.includes("py-") || className.includes("p-");
+  const defaultPadding = `${hasPx ? "" : "px-6"} ${hasPy ? "" : "py-2"}`.trim();
+
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className={`box-border inline-flex items-center justify-center gap-1 px-6 py-2 relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClasses} ${className}`}
+      className={`box-border inline-flex items-center justify-center gap-1 ${defaultPadding} relative transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 whitespace-nowrap ${variantClasses} ${className}`}
       {...dataAttributes}
     >
-      <span className={`relative w-fit mt-[-1.00px] font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] transition-colors duration-300 ${textClasses}`}>
+      <span className={`relative w-fit mt-[-1.00px] font-body font-[number:var(--body-font-weight)] text-[length:var(--body-font-size)] text-center tracking-[var(--body-letter-spacing)] leading-[var(--body-line-height)] [font-style:var(--body-font-style)] transition-colors duration-300 whitespace-nowrap ${textClasses}`}>
         {children || label}
       </span>
     </button>

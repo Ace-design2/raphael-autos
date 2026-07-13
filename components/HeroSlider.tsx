@@ -180,7 +180,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
+    <section className="relative w-full h-screen min-h-[580px] sm:min-h-[650px] md:min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
       {/* Preload all 7 vehicle images instantly into browser memory */}
       <div aria-hidden="true" className="hidden">
         {SLIDE_DATA.map((slide) => (
@@ -242,20 +242,20 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
           </button>
         </div>
 
-        <div className="text-center">
+        <div className="absolute left-1/2 -translate-x-1/2 text-center">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-body-l font-[number:var(--body-l-font-weight)] text-white text-[length:var(--body-l-font-size)] tracking-[var(--body-l-letter-spacing)] leading-[var(--body-l-line-height)] [font-style:var(--body-l-font-style)] hover:text-cooliocns-gold transition-colors uppercase block"
+            className="font-body-l font-semibold text-white text-sm sm:text-base md:text-lg tracking-[0.2em] leading-tight hover:text-cooliocns-gold transition-colors uppercase block whitespace-nowrap"
           >
             RAPHAEL AUTOS
           </a>
         </div>
 
-        <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8">
+        <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8 ml-auto">
           <button
             type="button"
             onClick={(e) => {
@@ -267,10 +267,10 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             MODELS
           </button>
 
-          {/* Original search bar design */}
+          {/* Original search bar design - hidden on mobile */}
           <form
             role="search"
-            className="flex items-center gap-2 px-2 py-1 border-b border-white/30 focus-within:border-cooliocns-gold transition-colors max-w-[120px] md:max-w-[200px]"
+            className="hidden md:flex items-center gap-2 px-2 py-1 border-b border-white/30 focus-within:border-cooliocns-gold transition-colors max-w-[120px] md:max-w-[200px]"
             onSubmit={(e) => e.preventDefault()}
           >
             <label htmlFor={searchId} className="inline-flex items-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors">
@@ -443,27 +443,27 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       </div>
 
       {/* Main Slide Content Area (z-30) */}
-      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pt-24 md:pt-28 pb-8 md:pb-12 pointer-events-auto gap-8 md:gap-12">
-        <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <div className="relative z-30 flex-1 flex flex-col justify-end px-4 sm:px-8 md:px-20 pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-8 md:pb-12 pointer-events-auto gap-6 sm:gap-8 md:gap-12">
+        <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8">
           {/* Slide Text & Actions */}
-          <div key={activeSlide} className="max-w-2xl flex flex-col items-start gap-6 animate-fade-in">
-            <span className="font-body text-xs uppercase tracking-[0.3em] text-cooliocns-gold font-bold">
+          <div key={activeSlide} className="max-w-2xl flex flex-col items-start gap-3 sm:gap-5 md:gap-6 animate-fade-in w-full">
+            <span className="font-body text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-cooliocns-gold font-bold">
               {SLIDE_DATA[activeSlide].eyebrow}
             </span>
 
-            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-white leading-tight font-light select-none">
+            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.15] sm:leading-tight font-light select-none tracking-tight sm:tracking-normal">
               {SLIDE_DATA[activeSlide].headline}
             </h1>
 
-            <p className="font-body text-sm text-gray-300 leading-relaxed font-light tracking-wide max-w-xl">
+            <p className="font-body text-xs sm:text-sm text-gray-300 leading-relaxed font-light tracking-wide max-w-xl">
               {SLIDE_DATA[activeSlide].supportingText}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mt-4 pointer-events-auto">
+            <div className="grid grid-cols-2 sm:flex items-center gap-2.5 sm:gap-4 mt-2 sm:mt-4 w-full sm:w-auto pointer-events-auto">
               <Button
                 variant="solid-gold"
                 label={SLIDE_DATA[activeSlide].primaryCta}
-                className="w-[180px] sm:w-[200px] justify-center"
+                className="w-full sm:w-[180px] md:w-[200px] justify-center px-2 sm:px-6 py-2.5 text-xs sm:text-base font-bold"
                 onClick={(e) => {
                   e?.preventDefault();
                   scrollToSection("inventory");
@@ -472,7 +472,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               <Button
                 variant="outline-white"
                 label={SLIDE_DATA[activeSlide].secondaryCta}
-                className="w-[180px] sm:w-[200px] justify-center"
+                className="w-full sm:w-[180px] md:w-[200px] justify-center px-2 sm:px-6 py-2.5 text-xs sm:text-base font-bold"
                 onClick={(e) => {
                   e?.preventDefault();
                   scrollToSection("about");
@@ -482,12 +482,12 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
           </div>
 
           {/* Chevron Buttons (icons on the right beside each other in the same position) */}
-          <div className="flex items-center gap-4 self-center md:self-end pointer-events-auto">
+          <div className="flex items-center gap-3 sm:gap-4 self-end md:self-end pointer-events-auto pt-2 sm:pt-0">
             <button
               type="button"
               onClick={handlePrev}
               aria-label="Previous vehicle"
-              className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
+              className="box-border inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -496,7 +496,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               type="button"
               onClick={handleNext}
               aria-label="Next vehicle"
-              className="box-border inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
+              className="box-border inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/20 hover:border-cooliocns-gold hover:text-cooliocns-gold transition-all cursor-pointer text-white bg-transparent active:scale-95"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

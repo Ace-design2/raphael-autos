@@ -185,16 +185,16 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
                   </div>
 
                   {/* Action Buttons Row */}
-                  <div className="self-stretch flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 pt-2 mt-auto">
+                  <div className="self-stretch flex flex-col sm:flex-row lg:flex-col xl:flex-row justify-between items-stretch gap-3 pt-2 mt-auto">
                     <Button
                       variant="solid-gold"
                       label="Inquire"
-                      className="flex-1 justify-center py-2.5 text-base font-bold"
+                      className="flex-1 justify-center px-3 sm:px-4 py-2.5 text-sm sm:text-base font-bold"
                     />
                     <Button
                       variant="outline-black"
                       label="View Details"
-                      className="flex-1 justify-center py-2.5 text-base font-bold"
+                      className="flex-1 justify-center px-3 sm:px-4 py-2.5 text-sm sm:text-base font-bold"
                     />
                   </div>
                 </div>

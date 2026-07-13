@@ -257,7 +257,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             className="box-border inline-flex items-center gap-2.5 cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >
             <MenuAlt04 className="w-8 h-8" />
-            <span className="text-white text-sm sm:text-base font-bold font-body tracking-[0.2em] uppercase">
+            <span className="hidden sm:inline text-white text-sm sm:text-base font-bold font-body tracking-[0.2em] uppercase">
               MENU
             </span>
           </button>
@@ -349,7 +349,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                 className="box-border inline-flex items-center gap-2.5 cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
               >
                 <CloseMD className="w-8 h-8" />
-                <span className="text-white text-sm sm:text-base font-bold font-body tracking-[0.2em] uppercase">
+                <span className="hidden sm:inline text-white text-sm sm:text-base font-bold font-body tracking-[0.2em] uppercase">
                   CLOSE
                 </span>
               </button>

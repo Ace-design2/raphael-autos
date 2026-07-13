@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useId } from "react";
+import React, { useState, useEffect, useId, useRef } from "react";
 import Image from "next/image";
 import { Button } from "./ui/Button";
 import {
@@ -113,7 +113,39 @@ interface HeroSliderProps {
 export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): React.JSX.Element => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const searchId = useId();
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      if (currentScrollY < 0) return;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsNavbarHidden(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsNavbarHidden(false);
+      }
+
+      if (currentScrollY <= 100) {
+        setIsNavbarHidden(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNext = (e?: React.MouseEvent) => {
     if (e) {
@@ -187,8 +219,18 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
         ))}
       </div>
 
-      {/* Top Header Navigation Overlay (z-30) */}
-      <header className="relative z-30 w-full flex items-center justify-between px-6 md:px-16 py-6 bg-black/10 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+      {/* Top Header Navigation Overlay (fixed z-40) */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-in-out ${
+          isNavbarHidden && !isMenuOpen
+            ? "-translate-y-full opacity-0 pointer-events-none"
+            : "translate-y-0 opacity-100 pointer-events-auto"
+        } ${
+          isScrolled
+            ? "py-4 bg-black/55 backdrop-blur-2xl border-b border-white/15 shadow-lg"
+            : "py-6 bg-black/10 backdrop-blur-md border-b border-white/5"
+        }`}
+      >
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -401,7 +443,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       </div>
 
       {/* Main Slide Content Area (z-30) */}
-      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pb-8 md:pb-12 pointer-events-auto gap-8 md:gap-12">
+      <div className="relative z-30 flex-1 flex flex-col justify-end px-6 md:px-20 pt-24 md:pt-28 pb-8 md:pb-12 pointer-events-auto gap-8 md:gap-12">
         <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           {/* Slide Text & Actions */}
           <div key={activeSlide} className="max-w-2xl flex flex-col items-start gap-6 animate-fade-in">

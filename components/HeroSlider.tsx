@@ -254,9 +254,12 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             type="button"
             aria-label="Open navigation menu"
             onClick={() => setIsMenuOpen(true)}
-            className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
+            className="box-border inline-flex items-center gap-2.5 cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >
             <MenuAlt04 className="w-8 h-8" />
+            <span className="text-white text-sm sm:text-base font-bold font-body tracking-[0.2em] uppercase">
+              MENU
+            </span>
           </button>
         </div>
 
@@ -322,7 +325,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
       {/* Sliding Navigation Drawer Overlay (z-50) */}
       <div
-        className={`fixed inset-0 z-50 bg-black/40 backdrop-blur-sm transition-opacity duration-500 flex justify-start ${
+        className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-500 flex justify-start ${
           isMenuOpen
             ? "opacity-100 pointer-events-auto delay-0"
             : "opacity-0 pointer-events-none delay-[350ms]"
@@ -330,30 +333,25 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
         onClick={() => setIsMenuOpen(false)}
       >
         <div
-          className={`w-full max-w-[580px] h-full min-h-screen px-6 sm:px-10 md:px-20 py-6 bg-[#0f0f0f]/85 md:bg-[#0f0f0f]/80 backdrop-blur-3xl [-webkit-backdrop-filter:blur(64px)] flex flex-col justify-between items-start text-white border-r border-white/15 shadow-[0_0_80px_rgba(0,0,0,0.9)] transition-transform duration-500 ease-out overflow-y-auto ${
+          className={`w-full max-w-[580px] h-full min-h-screen px-6 md:px-16 py-6 bg-[#0c0c0c]/95 backdrop-blur-3xl [-webkit-backdrop-filter:blur(64px)] [transform:translateZ(0)] [backface-visibility:hidden] [will-change:transform] flex flex-col justify-between items-start text-white border-r border-white/15 shadow-[0_0_80px_rgba(0,0,0,0.9)] transition-transform duration-500 ease-out overflow-y-auto ${
             isMenuOpen ? "translate-x-0 delay-0" : "-translate-x-full delay-[350ms]"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Top Section */}
           <div className="self-stretch flex flex-col justify-start items-start gap-9">
-            {/* Header / Brand & Close Button */}
-            <div className={`self-stretch flex items-center justify-between ${getWaterfallClass(0)}`}>
-              <div className="inline-flex justify-start items-center gap-2.5">
-                <div className="w-9 h-9 relative overflow-hidden flex items-center justify-center">
-                  <div className="w-4 h-4 outline outline-[2.50px] outline-offset-[-1.25px] outline-cooliocns-gold" />
-                </div>
-                <span className="text-white text-lg font-bold font-body tracking-wider">
-                  RAPHAEL AUTOS
-                </span>
-              </div>
+            {/* Close Button exactly aligned with top navbar Menu button */}
+            <div className={`self-stretch flex items-center justify-start ${isScrolled ? "-mt-3 pb-3" : ""} ${getWaterfallClass(0)}`}>
               <button
                 type="button"
                 aria-label="Close navigation menu"
                 onClick={() => setIsMenuOpen(false)}
-                className="p-2 text-white/70 hover:text-cooliocns-gold transition-colors cursor-pointer"
+                className="box-border inline-flex items-center gap-2.5 cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
               >
                 <CloseMD className="w-8 h-8" />
+                <span className="text-white text-sm sm:text-base font-bold font-body tracking-[0.2em] uppercase">
+                  CLOSE
+                </span>
               </button>
             </div>
 

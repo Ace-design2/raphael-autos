@@ -1,105 +1,166 @@
-import React from "react";
+"use client";
 
-interface CollectionItem {
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+
+// Clean, high-impact Brand Logo Marks so they are clearly visible inside the size-12 box
+const RollsRoyceLogo = () => (
+  <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8 text-white group-hover:text-cooliocns-gold transition-colors">
+    <rect x="4" y="4" width="32" height="32" stroke="currentColor" strokeWidth="2.5" />
+    <path d="M14 14H22C24.5 14 26 15.5 26 17.5C26 19.5 24.5 21 22 21H14V14Z" stroke="currentColor" strokeWidth="2.5" />
+    <path d="M20 21L26 28" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
+    <path d="M10 10H18C20.5 10 22 11.5 22 13.5C22 15.5 20.5 17 18 17H10V10Z" stroke="currentColor" strokeWidth="1.8" opacity="0.6" />
+  </svg>
+);
+
+const PorscheLogo = () => (
+  <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8 text-white group-hover:text-cooliocns-gold transition-colors">
+    <path d="M20 3L32 9V22C32 29.5 20 37 20 37C20 37 8 29.5 8 22V9L20 3Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+    <path d="M14 16H26M14 21H26M20 12V26" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+    <rect x="17" y="16" width="6" height="7" fill="currentColor" />
+  </svg>
+);
+
+const AstonMartinLogo = () => (
+  <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9 text-white group-hover:text-cooliocns-gold transition-colors">
+    <path d="M2 21L13 16L20 12L27 16L38 21L27 23L20 26L13 23L2 21Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+    <path d="M12 20L20 16L28 20" stroke="currentColor" strokeWidth="1.8" />
+    <rect x="17" y="19" width="6" height="3" fill="currentColor" />
+  </svg>
+);
+
+const RangeRoverLogo = () => (
+  <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8 text-white group-hover:text-cooliocns-gold transition-colors">
+    <rect x="3" y="12" width="34" height="16" rx="8" stroke="currentColor" strokeWidth="2.5" />
+    <path d="M9 20H31" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.7" />
+    <circle cx="20" cy="20" r="3.5" fill="currentColor" />
+  </svg>
+);
+
+interface BrandItem {
   id: string;
-  num: string;
-  title: string;
-  description: string;
+  brand: string;
+  image: string;
+  logo: React.JSX.Element;
 }
 
-const COLLECTIONS: CollectionItem[] = [
+const BRAND_MARQUES: BrandItem[] = [
   {
-    id: "performance",
-    num: "I",
-    title: "Performance Icons",
-    description: "Legendary machines built for exhilarating driving experiences.",
+    id: "rolls-royce",
+    brand: "Rolls-Royce",
+    image: "/images/hero_rolls_royce.png",
+    logo: <RollsRoyceLogo />,
   },
   {
-    id: "sedans",
-    num: "II",
-    title: "Luxury Sedans",
-    description: "Elegant comfort, refined craftsmanship, and executive presence.",
+    id: "porsche",
+    brand: "Porsche",
+    image: "/images/hero_porsche_911.png",
+    logo: <PorscheLogo />,
   },
   {
-    id: "gt",
-    num: "III",
-    title: "Grand Tourers",
-    description: "Designed for effortless journeys with uncompromising performance.",
+    id: "aston-martin",
+    brand: "Aston Martin",
+    image: "/images/hero_aston_martin.png",
+    logo: <AstonMartinLogo />,
   },
   {
-    id: "suv",
-    num: "IV",
-    title: "Luxury SUVs",
-    description: "Versatility, capability, and sophistication in equal measure.",
-  },
-  {
-    id: "arrivals",
-    num: "V",
-    title: "New Arrivals",
-    description: "Recently acquired vehicles awaiting their next owner.",
-  },
-  {
-    id: "limited",
-    num: "VI",
-    title: "Limited Editions",
-    description: "Rare automobiles distinguished by exclusivity and heritage.",
+    id: "range-rover",
+    brand: "Range Rover",
+    image: "/images/car_range_rover.png",
+    logo: <RangeRoverLogo />,
   },
 ];
 
 export const FeaturedCollections = (): React.JSX.Element => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start step animation right when top of section enters viewport (90% height)
+      // Complete step-to-side-by-side alignment when top of section reaches near top (15% height)
+      const start = windowHeight * 0.90;
+      const end = windowHeight * 0.15;
+
+      if (rect.top >= start) {
+        setScrollProgress(0);
+      } else if (rect.top <= end) {
+        setScrollProgress(1);
+      } else {
+        const current = (start - rect.top) / (start - end);
+        setScrollProgress(current);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="bg-white py-24 px-6 md:px-20 border-t border-black/10 relative z-10" id="collections">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-xl">
-            <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
-              Selection
-            </span>
-            <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-wide">
-              Curated Collections
-            </h2>
-          </div>
-          <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
-            Browse vehicles thoughtfully grouped to help you discover the perfect balance of performance, luxury, and lifestyle.
-          </p>
+    <section
+      ref={sectionRef}
+      className="bg-white pt-24 border-t border-black/10 relative z-10 w-full overflow-hidden"
+      id="collections"
+    >
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-20 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
+            DISTINGUISHED MARQUES
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-tight">
+            Our Curated Brands
+          </h2>
         </div>
+        <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
+          A carefully selected collection of motor cars from the world&apos;s most prestigious automotive houses.
+        </p>
+      </div>
 
-        {/* Collections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {COLLECTIONS.map((col) => (
+      {/* Full-Width Cards Grid with Dramatic Step Animation */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+        {BRAND_MARQUES.map((item, idx) => {
+          // Calculate dramatic step offset: massive 240px vertical steps creating a bold staircase from left to right
+          // As you scroll to the section, offset glides to 0px and all cards come together side by side
+          const stepOffset = idx * 240 * (1 - scrollProgress);
+
+          return (
             <div
-              key={col.id}
-              className="group border border-black/10 bg-gray-50/80 p-8 flex flex-col justify-between min-h-[220px] transition-colors duration-500 ease-in-out hover:border-cooliocns-gold hover:bg-white relative overflow-hidden"
+              key={item.id}
+              style={{
+                transform: `translateY(${stepOffset}px)`,
+              }}
+              className="w-full h-[680px] lg:h-[748px] relative overflow-hidden group border-r border-black/20 last:border-r-0 select-none bg-black transition-transform duration-200 ease-out"
             >
-              {/* Decorative faint Roman numeral background on hover */}
-              <span className="absolute right-4 top-2 text-8xl font-display text-black/[0.03] select-none group-hover:text-black/[0.06] transition-colors duration-500">
-                {col.num}
-              </span>
+              {/* Background Image */}
+              <Image
+                src={item.image}
+                alt={item.brand}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
 
-              <div className="flex flex-col gap-4">
-                <span className="font-body text-xs text-cooliocns-gold tracking-widest block font-bold">
-                  {col.num}
-                </span>
-                <h3 className="font-display text-xl text-[#111111] group-hover:text-cooliocns-gold transition-colors duration-300 font-medium">
-                  {col.title}
-                </h3>
-                <p className="font-body text-xs text-gray-600 leading-relaxed max-w-[280px]">
-                  {col.description}
-                </p>
-              </div>
+              {/* Subtle overlay for contrast */}
+              <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/30" />
 
-              {/* Action indicator at bottom */}
-              <div className="mt-8 flex items-center justify-between border-t border-black/10 pt-4">
-                <span className="font-body text-[10px] text-black/50 tracking-[0.2em] group-hover:text-[#111111] font-semibold transition-colors">
-                  EXPLORE CATEGORY
-                </span>
-                {/* Thin gold slide-in animation line */}
-                <div className="w-0 h-[1px] bg-cooliocns-gold group-hover:w-16 transition-all duration-500" />
+              {/* Clean Minimalist Bottom Bar (Logo + Brand Name ONLY) */}
+              <div className="w-full p-6 left-0 bottom-0 absolute bg-black/10 backdrop-blur-[50px] [-webkit-backdrop-filter:blur(50px)] inline-flex justify-start items-center gap-3.5 border-t border-white/15">
+                <div className="size-12 relative overflow-hidden shrink-0 flex items-center justify-center bg-black/20 backdrop-blur-md rounded border border-white/20 group-hover:border-cooliocns-gold transition-colors">
+                  {item.logo}
+                </div>
+                <div className="justify-start text-white text-3xl xl:text-4xl font-bold font-body tracking-tight group-hover:text-cooliocns-gold transition-colors">
+                  {item.brand}
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );

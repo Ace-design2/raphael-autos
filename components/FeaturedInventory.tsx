@@ -204,7 +204,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
         ) : (
           <div className="text-center py-20 border border-black/10 bg-gray-50">
             <p className="font-body text-gray-600 text-sm tracking-wide">
-              No vehicles matched your search query. Try searching for "Porsche", "Rolls", "Vantage", or "2024".
+              No vehicles matched your search query. Try searching for &quot;Porsche&quot;, &quot;Rolls&quot;, &quot;Vantage&quot;, or &quot;2024&quot;.
             </p>
             <Button
               variant="outline-black"

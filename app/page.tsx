@@ -6,12 +6,14 @@ import FeaturedCollections from "@/components/FeaturedCollections";
 import FeaturedInventory from "@/components/FeaturedInventory";
 import AboutPreview from "@/components/AboutPreview";
 import Footer from "@/components/Footer";
+import ScrollIndicator from "@/components/ScrollIndicator";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-[#111111] selection:bg-cooliocns-gold selection:text-white">
+      <ScrollIndicator />
       <main className="flex-1 flex flex-col">
         {/* Header & Hero Carousel Slider */}
         <HeroSlider searchQuery={searchQuery} setSearchQuery={setSearchQuery} />

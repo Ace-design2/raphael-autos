@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useId, useRef } from "react";
+import React, { useState, useEffect, useId } from "react";
 import Image from "next/image";
 import { Button } from "./ui/Button";
 import {
@@ -202,7 +202,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[580px] sm:min-h-[650px] md:min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
+    <section id="hero" className="relative w-full h-screen min-h-[580px] sm:min-h-[650px] md:min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
       {/* Preload all 7 vehicle images instantly into browser memory */}
       <div aria-hidden="true" className="hidden">
         {SLIDE_DATA.map((slide) => (

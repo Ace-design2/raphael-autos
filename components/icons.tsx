@@ -202,6 +202,23 @@ export const ChevronDown = ({ className, ...props }: IconProps): React.JSX.Eleme
   </svg>
 );
 
+export const ChevronUp = ({ className, ...props }: IconProps): React.JSX.Element => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    className={className}
+    {...props}
+  >
+    <path
+      d="M3.33333 10L7.99999 5.33333L12.6667 10"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 // Large active dot: outer thin ring with a center dot
 export const DummyCircle = ({ className, ...props }: IconProps): React.JSX.Element => (
   <svg

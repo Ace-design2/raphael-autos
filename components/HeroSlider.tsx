@@ -179,6 +179,28 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
     }
   };
 
+  const getWaterfallClass = (index: number) => {
+    const delays = [
+      "delay-[100ms]",
+      "delay-[180ms]",
+      "delay-[260ms]",
+      "delay-[340ms]",
+      "delay-[420ms]",
+      "delay-[500ms]",
+      "delay-[580ms]",
+      "delay-[660ms]",
+      "delay-[740ms]",
+      "delay-[820ms]",
+      "delay-[900ms]",
+    ];
+    const delayClass = delays[index] || "delay-[900ms]";
+    return `transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+      isMenuOpen
+        ? `translate-x-0 opacity-100 ${delayClass}`
+        : "-translate-x-24 sm:-translate-x-32 opacity-0 duration-300 delay-0"
+    }`;
+  };
+
   return (
     <section className="relative w-full h-screen min-h-[580px] sm:min-h-[650px] md:min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
       {/* Preload all 7 vehicle images instantly into browser memory */}
@@ -227,8 +249,8 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             : "translate-y-0 opacity-100 pointer-events-auto"
         } ${
           isScrolled
-            ? "py-4 bg-black/55 backdrop-blur-2xl border-b border-white/15 shadow-lg"
-            : "py-6 bg-black/10 backdrop-blur-md border-b border-white/5"
+            ? "py-3.5 bg-[#111111]/90 backdrop-blur-3xl [-webkit-backdrop-filter:blur(48px)] border-b border-white/20 shadow-xl"
+            : "py-5 bg-[#111111]/70 backdrop-blur-2xl [-webkit-backdrop-filter:blur(32px)] border-b border-white/10 shadow-md"
         }`}
       >
         <div className="flex items-center gap-4">
@@ -304,13 +326,13 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
       {/* Sliding Navigation Drawer Overlay (z-50) */}
       <div
-        className={`fixed inset-0 z-50 bg-black/20 transition-opacity duration-500 flex justify-start ${
+        className={`fixed inset-0 z-50 bg-black/40 backdrop-blur-sm transition-opacity duration-500 flex justify-start ${
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMenuOpen(false)}
       >
         <div
-          className={`w-full max-w-[580px] h-full min-h-screen px-10 md:px-20 py-6 bg-black/40 md:bg-black/20 backdrop-blur-3xl flex flex-col justify-between items-start text-white border-r border-white/10 shadow-2xl transition-transform duration-500 ease-out overflow-y-auto ${
+          className={`w-full max-w-[580px] h-full min-h-screen px-6 sm:px-10 md:px-20 py-6 bg-[#0f0f0f]/85 md:bg-[#0f0f0f]/80 backdrop-blur-3xl [-webkit-backdrop-filter:blur(64px)] flex flex-col justify-between items-start text-white border-r border-white/15 shadow-[0_0_80px_rgba(0,0,0,0.9)] transition-transform duration-500 ease-out overflow-y-auto ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -318,7 +340,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
           {/* Top Section */}
           <div className="self-stretch flex flex-col justify-start items-start gap-9">
             {/* Header / Brand & Close Button */}
-            <div className="self-stretch flex items-center justify-between">
+            <div className={`self-stretch flex items-center justify-between ${getWaterfallClass(0)}`}>
               <div className="inline-flex justify-start items-center gap-2.5">
                 <div className="w-9 h-9 relative overflow-hidden flex items-center justify-center">
                   <div className="w-4 h-4 outline outline-[2.50px] outline-offset-[-1.25px] outline-cooliocns-gold" />
@@ -354,7 +376,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                     setIsMenuOpen(false);
                     scrollToSection(item.id);
                   }}
-                  className="self-stretch inline-flex justify-start items-center gap-6 group py-1.5 cursor-pointer"
+                  className={`self-stretch inline-flex justify-start items-center gap-6 group py-1.5 cursor-pointer ${getWaterfallClass(idx + 1)}`}
                 >
                   <span className="flex-1 text-right justify-start text-white group-hover:text-cooliocns-gold transition-colors text-lg font-normal font-body tracking-wider">
                     {item.label}
@@ -381,7 +403,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                   setIsMenuOpen(false);
                   scrollToSection(item.id);
                 }}
-                className="self-stretch inline-flex justify-start items-center gap-6 group py-1 cursor-pointer"
+                className={`self-stretch inline-flex justify-start items-center gap-6 group py-1 cursor-pointer ${getWaterfallClass(idx + 6)}`}
               >
                 <span className="flex-1 text-right justify-start text-white group-hover:text-cooliocns-gold transition-colors text-lg font-normal font-body tracking-wider">
                   {item.label}
@@ -392,7 +414,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
           {/* Bottom Info Section */}
           <div className="self-stretch pb-6 md:pb-9 flex flex-col justify-start items-start gap-3 border-t border-white/10 pt-6">
-            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+            <div className={`self-stretch flex flex-col justify-start items-start gap-1 ${getWaterfallClass(8)}`}>
               <div className="self-stretch inline-flex justify-start items-center gap-6">
                 <div className="flex-1 text-right justify-start text-white text-lg font-normal font-body">
                   VISIT OUR SHOWROOM
@@ -405,7 +427,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               </div>
             </div>
 
-            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+            <div className={`self-stretch flex flex-col justify-start items-start gap-1 ${getWaterfallClass(9)}`}>
               <div className="self-stretch inline-flex justify-start items-center gap-6">
                 <div className="flex-1 justify-end flex items-center gap-2 text-white text-lg font-normal font-body">
                   <MailIcon className="w-5 h-5 text-cooliocns-gold" />
@@ -422,7 +444,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               </div>
             </div>
 
-            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+            <div className={`self-stretch flex flex-col justify-start items-start gap-1 ${getWaterfallClass(10)}`}>
               <div className="self-stretch inline-flex justify-start items-center gap-6">
                 <div className="flex-1 justify-end flex items-center gap-2 text-white text-lg font-normal font-body">
                   <PhoneIcon className="w-5 h-5 text-cooliocns-gold" />

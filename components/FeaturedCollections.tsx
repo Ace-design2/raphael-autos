@@ -37,6 +37,15 @@ const RangeRoverLogo = () => (
   </svg>
 );
 
+const BrowseBrandsLogo = () => (
+  <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8 text-white group-hover:text-cooliocns-gold transition-colors">
+    <rect x="5" y="5" width="13" height="13" rx="3" stroke="currentColor" strokeWidth="2.5" />
+    <rect x="22" y="5" width="13" height="13" rx="3" stroke="currentColor" strokeWidth="2.5" opacity="0.6" />
+    <rect x="5" y="22" width="13" height="13" rx="3" stroke="currentColor" strokeWidth="2.5" opacity="0.6" />
+    <path d="M24 28.5H34M34 28.5L29.5 24M34 28.5L29.5 33" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 interface BrandItem {
   id: string;
   brand: string;
@@ -64,10 +73,10 @@ const BRAND_MARQUES: BrandItem[] = [
     logo: <AstonMartinLogo />,
   },
   {
-    id: "range-rover",
-    brand: "Range Rover",
+    id: "view-all-brands",
+    brand: "View All Brands",
     image: "/images/car_range_rover.png",
-    logo: <RangeRoverLogo />,
+    logo: <BrowseBrandsLogo />,
   },
 ];
 
@@ -132,10 +141,16 @@ export const FeaturedCollections = (): React.JSX.Element => {
           return (
             <div
               key={item.id}
+              onClick={() => {
+                const el = document.getElementById("inventory");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
               style={{
                 transform: `translateY(${stepOffset}px)`,
               }}
-              className="w-full h-[680px] lg:h-[748px] relative overflow-hidden group border-r border-black/20 last:border-r-0 select-none bg-black transition-transform duration-200 ease-out"
+              className="w-full h-[680px] lg:h-[748px] relative overflow-hidden group border-r border-black/20 last:border-r-0 select-none bg-black transition-transform duration-200 ease-out cursor-pointer"
             >
               {/* Background Image */}
               <Image
@@ -154,7 +169,7 @@ export const FeaturedCollections = (): React.JSX.Element => {
                 <div className="size-12 relative overflow-hidden shrink-0 flex items-center justify-center bg-black/20 backdrop-blur-md rounded border border-white/20 group-hover:border-cooliocns-gold transition-colors">
                   {item.logo}
                 </div>
-                <div className="justify-start text-white text-3xl xl:text-4xl font-bold font-body tracking-tight group-hover:text-cooliocns-gold transition-colors">
+                <div className="justify-start text-white text-3xl xl:text-4xl font-normal font-body tracking-tight group-hover:text-cooliocns-gold transition-colors">
                   {item.brand}
                 </div>
               </div>

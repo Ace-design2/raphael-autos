@@ -121,7 +121,17 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       const currentScrollY = window.scrollY;
       const heroSectionHeight = window.innerHeight - 80;
 
-      if (currentScrollY > heroSectionHeight) {
+      // Check if the top navbar (approx 0-80px from top of window) is currently over the #about section
+      const aboutEl = document.getElementById("about");
+      let isOverAbout = false;
+      if (aboutEl) {
+        const aboutRect = aboutEl.getBoundingClientRect();
+        if (aboutRect.top <= 80 && aboutRect.bottom >= 80) {
+          isOverAbout = true;
+        }
+      }
+
+      if (currentScrollY > heroSectionHeight && !isOverAbout) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);

@@ -5,6 +5,7 @@ import HeroSlider from "@/components/HeroSlider";
 import FeaturedCollections from "@/components/FeaturedCollections";
 import FeaturedInventory from "@/components/FeaturedInventory";
 import AboutPreview from "@/components/AboutPreview";
+import ConciergeServices from "@/components/ConciergeServices";
 import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 
@@ -26,6 +27,9 @@ export default function Home() {
 
         {/* About Preview Section */}
         <AboutPreview />
+
+        {/* Concierge Services Section */}
+        <ConciergeServices />
       </main>
 
       {/* Luxury Footer */}

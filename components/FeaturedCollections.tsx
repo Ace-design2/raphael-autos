@@ -113,7 +113,7 @@ export const FeaturedCollections = (): React.JSX.Element => {
   return (
     <section
       ref={sectionRef}
-      className="bg-white pt-24 border-t border-black/10 relative z-10 w-full overflow-hidden"
+      className="bg-white pt-20 border-t border-black/10 relative z-10 w-full overflow-hidden"
       id="collections"
     >
       {/* Header Section */}

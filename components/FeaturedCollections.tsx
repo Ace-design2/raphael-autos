@@ -73,10 +73,10 @@ const BRAND_MARQUES: BrandItem[] = [
     logo: <AstonMartinLogo />,
   },
   {
-    id: "view-all-brands",
-    brand: "View All Brands",
+    id: "range-rover",
+    brand: "Range Rover",
     image: "/images/car_range_rover.png",
-    logo: <BrowseBrandsLogo />,
+    logo: <RangeRoverLogo />,
   },
 ];
 
@@ -113,30 +113,13 @@ export const FeaturedCollections = (): React.JSX.Element => {
   return (
     <section
       ref={sectionRef}
-      className="bg-white pt-20 border-t border-black/10 relative z-10 w-full overflow-hidden"
+      className="relative w-full min-h-[720px] lg:min-h-[780px] flex items-center justify-center overflow-hidden bg-[#111111] pt-0 border-t-0"
       id="collections"
     >
-      {/* Header Section */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
-            DISTINGUISHED MARQUES
-          </span>
-          <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-tight">
-            Our Curated Brands
-          </h2>
-        </div>
-        <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
-          A carefully selected collection of motor cars from the world&apos;s most prestigious automotive houses.
-        </p>
-      </div>
-
-      {/* Full-Width Cards Grid with Dramatic Step Animation */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+      {/* --- BACKGROUND: 4-Column Brand Cards Grid with Dynamic Step Animation --- */}
+      <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 w-full h-full">
         {BRAND_MARQUES.map((item, idx) => {
-          // Calculate dramatic step offset: massive 240px vertical steps creating a bold staircase from left to right
-          // As you scroll to the section, offset glides to 0px and all cards come together side by side
-          const stepOffset = idx * 240 * (1 - scrollProgress);
+          const stepOffset = idx * 160 * (1 - scrollProgress);
 
           return (
             <div
@@ -150,7 +133,7 @@ export const FeaturedCollections = (): React.JSX.Element => {
               style={{
                 transform: `translateY(${stepOffset}px)`,
               }}
-              className="w-full h-[680px] lg:h-[748px] relative overflow-hidden group border-r border-black/20 last:border-r-0 select-none bg-black transition-transform duration-200 ease-out cursor-pointer"
+              className="w-full h-full relative overflow-hidden group border-r border-black/20 last:border-r-0 select-none bg-black transition-transform duration-200 ease-out cursor-pointer"
             >
               {/* Background Image */}
               <Image
@@ -161,11 +144,11 @@ export const FeaturedCollections = (): React.JSX.Element => {
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* Subtle overlay for contrast */}
-              <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/30" />
+              {/* Subtle overlay on each individual card for contrast */}
+              <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-black/40" />
 
               {/* Clean Minimalist Bottom Bar (Logo + Brand Name ONLY) */}
-              <div className="w-full p-6 left-0 bottom-0 absolute bg-black/10 backdrop-blur-[50px] [-webkit-backdrop-filter:blur(50px)] inline-flex justify-start items-center gap-3.5 border-t border-white/15">
+              <div className="w-full p-6 left-0 bottom-0 absolute bg-black/15 backdrop-blur-[50px] [-webkit-backdrop-filter:blur(50px)] inline-flex justify-start items-center gap-3.5 border-t border-white/15 z-10">
                 <div className="size-12 relative overflow-hidden shrink-0 flex items-center justify-center bg-black/20 backdrop-blur-md rounded border border-white/20 group-hover:border-cooliocns-gold transition-colors">
                   {item.logo}
                 </div>
@@ -176,6 +159,40 @@ export const FeaturedCollections = (): React.JSX.Element => {
             </div>
           );
         })}
+      </div>
+
+      {/* --- OVERLAY: Dimmer to unify the background grid and ensure high readability --- */}
+      <div className="absolute inset-0 bg-black/45 backdrop-blur-[2px] pointer-events-none z-10" />
+
+      {/* --- CENTERED HERO CONTENT --- */}
+      <div className="relative z-20 max-w-2xl mx-6 my-16 p-8 md:p-14 text-center rounded-3xl bg-black/65 backdrop-blur-2xl [-webkit-backdrop-filter:blur(48px)] border border-white/20 shadow-2xl pointer-events-auto transition-all duration-300 hover:border-cooliocns-gold/50">
+        <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
+          DISTINGUISHED MARQUES
+        </span>
+        <h2 className="font-display text-3xl md:text-5xl text-white font-normal tracking-tight mb-4 drop-shadow-md">
+          Our Curated Brands
+        </h2>
+        <p className="font-body text-sm md:text-base text-gray-200 leading-relaxed tracking-wide">
+          A carefully selected collection of motor cars from the world&apos;s most prestigious automotive houses.
+        </p>
+        
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById("inventory");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-cooliocns-gold hover:bg-[#cba135] text-white font-body text-sm uppercase tracking-widest font-semibold shadow-xl hover:shadow-cooliocns-gold/30 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+          >
+            <span>View All Brands</span>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
   );

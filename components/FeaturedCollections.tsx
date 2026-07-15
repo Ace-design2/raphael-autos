@@ -117,18 +117,20 @@ export const FeaturedCollections = (): React.JSX.Element => {
       id="collections"
     >
       {/* Header Section */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
-            DISTINGUISHED MARQUES
-          </span>
-          <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-tight">
-            Our Curated Brands
-          </h2>
+      <div className="w-full px-6 md:px-20 mb-16">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
+              DISTINGUISHED MARQUES
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-tight">
+              Our Curated Brands
+            </h2>
+          </div>
+          <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
+            A carefully selected collection of motor cars from the world&apos;s most prestigious automotive houses.
+          </p>
         </div>
-        <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
-          A carefully selected collection of motor cars from the world&apos;s most prestigious automotive houses.
-        </p>
       </div>
 
       {/* Full-Width Cards Grid with Dramatic Step Animation */}

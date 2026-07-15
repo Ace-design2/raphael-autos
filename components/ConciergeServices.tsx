@@ -110,7 +110,7 @@ export const ConciergeServices = (): React.JSX.Element => {
           {SERVICES_DATA.map((service, idx) => (
             <div
               key={service.title}
-              className="bg-[#fafafa] hover:bg-white p-8 border border-black/10 hover:border-cooliocns-gold/60 transition-all duration-300 flex flex-col justify-between gap-8 group shadow-sm hover:shadow-xl cursor-pointer"
+              className="bg-[#fafafa] hover:bg-white p-8 border border-black/10 hover:border-cooliocns-gold/60 transition-all duration-300 flex flex-col justify-between gap-8 group cursor-pointer"
             >
               <div>
                 <div className="size-12 rounded bg-black/5 group-hover:bg-[#111111] flex items-center justify-center text-[#111111] group-hover:text-cooliocns-gold transition-colors duration-300 mb-6 border border-black/10 group-hover:border-[#111111]">
@@ -147,7 +147,7 @@ export const ConciergeServices = (): React.JSX.Element => {
           <Button
             variant="solid-gold"
             label="Discover Concierge Services"
-            className="px-8 py-4 text-xs font-bold uppercase tracking-widest whitespace-nowrap shrink-0 shadow-lg hover:-translate-y-0.5 transition-transform"
+            className="px-8 py-4 text-xs font-bold uppercase tracking-widest whitespace-nowrap shrink-0 shadow-lg"
             onClick={(e) => {
               e?.preventDefault();
               const el = document.getElementById("footer");

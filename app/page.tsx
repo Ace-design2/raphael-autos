@@ -28,6 +28,16 @@ export default function Home() {
         {/* About Preview Section */}
         <AboutPreview />
 
+        {/* Gold Divider */}
+        <div className="w-full bg-cooliocns-gold py-12 md:py-16 flex flex-col items-center justify-center text-center px-6 border-y border-cooliocns-gold/20 shadow-[0_0_50px_rgba(201,162,39,0.15)] relative z-20">
+          <h2 className="font-display text-3xl md:text-4xl text-[#111111] tracking-widest mb-3">
+            RAPHAEL AUTOS
+          </h2>
+          <p className="font-body text-xs md:text-sm text-[#111111]/80 uppercase tracking-[0.3em] font-bold">
+            Curated Luxury Automobiles
+          </p>
+        </div>
+
         {/* Concierge Services Section */}
         <ConciergeServices />
       </main>

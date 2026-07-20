@@ -98,8 +98,6 @@ export const ConciergeServices = (): React.JSX.Element => {
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Start animation when top of section enters viewport (90% height)
-      // Complete when top reaches near top (15% height)
       const start = windowHeight * 0.90;
       const end = windowHeight * 0.15;
 

@@ -127,6 +127,7 @@ export const ConciergeServices = (): React.JSX.Element => {
           <Button
             variant="solid-gold"
             label="Discuss Requirements"
+            className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.25em]"
             onClick={(e) => {
               e?.preventDefault();
               const el = document.getElementById("footer");
@@ -157,7 +158,7 @@ export const ConciergeServices = (): React.JSX.Element => {
                 </div>
 
                 {/* Icon Container */}
-                <div className={`relative z-10 shrink-0 size-16 rounded border flex items-center justify-center mb-8 transition-all duration-500 ${isHovered ? 'bg-cooliocns-gold/10 border-cooliocns-gold/50 text-cooliocns-gold scale-110' : 'bg-white/5 border-white/10 text-white/70'}`}>
+                <div className={`relative z-10 shrink-0 size-16 rounded border flex items-center justify-center mb-8 transition-all duration-500 ${isHovered ? 'bg-cooliocns-gold/10 border-cooliocns-gold/50 text-cooliocns-gold' : 'bg-white/5 border-white/10 text-white/70'}`}>
                   {service.icon}
                 </div>
 

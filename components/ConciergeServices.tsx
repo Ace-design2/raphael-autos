@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Button } from "./ui/Button";
 
@@ -89,9 +89,37 @@ const SERVICES_DATA: ServiceItem[] = [
 
 export const ConciergeServices = (): React.JSX.Element => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start animation when top of section enters viewport (90% height)
+      // Complete when top reaches near top (15% height)
+      const start = windowHeight * 0.90;
+      const end = windowHeight * 0.15;
+
+      if (rect.top >= start) {
+        setScrollProgress(0);
+      } else if (rect.top <= end) {
+        setScrollProgress(1);
+      } else {
+        const current = (start - rect.top) / (start - end);
+        setScrollProgress(current);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <section className="relative text-white py-24 md:py-32 px-6 md:px-12 lg:px-20 z-10 overflow-hidden" id="concierge">
+    <section ref={sectionRef} className="relative text-white py-24 md:py-32 px-6 md:px-12 lg:px-20 z-10 overflow-hidden" id="concierge">
       {/* Background Image */}
       <Image
         src="/images/about_details.png"
@@ -140,11 +168,14 @@ export const ConciergeServices = (): React.JSX.Element => {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
           {SERVICES_DATA.map((service, idx) => {
             const isHovered = hoveredIdx === idx;
+            // Left to right stagger: they start shifted left, and unfold to their natural positions
+            const stepOffset = idx * -240 * (1 - scrollProgress);
             
             return (
               <div
                 key={service.title}
-                className={`group relative flex flex-col items-start p-8 md:p-10 border transition-all duration-500 cursor-pointer backdrop-blur-md bg-black/40 ${isHovered ? 'border-cooliocns-gold/60' : 'border-white/10 hover:border-cooliocns-gold/60'}`}
+                style={{ transform: `translateX(${stepOffset}px)` }}
+                className={`group relative flex flex-col items-start p-8 md:p-10 border transition-colors duration-500 transition-transform ease-out cursor-pointer backdrop-blur-md bg-black/40 ${isHovered ? 'border-cooliocns-gold/60' : 'border-white/10 hover:border-cooliocns-gold/60'}`}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >

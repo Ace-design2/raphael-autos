@@ -136,13 +136,9 @@ export const ConciergeServices = (): React.JSX.Element => {
         
         {/* Centered Header Section */}
         <div className="flex flex-col items-center text-center max-w-3xl mb-16 md:mb-20">
-          <div className="inline-flex items-center justify-center gap-4 mb-6">
-            <div className="w-8 h-[1px] bg-cooliocns-gold"></div>
-            <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.3em] font-semibold">
-              Concierge Services
-            </span>
-            <div className="w-8 h-[1px] bg-cooliocns-gold"></div>
-          </div>
+          <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.3em] font-semibold mb-6 block">
+            Concierge Services
+          </span>
           
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] mb-6">
             An Ownership Experience Tailored to You
@@ -168,13 +164,13 @@ export const ConciergeServices = (): React.JSX.Element => {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
           {SERVICES_DATA.map((service, idx) => {
             const isHovered = hoveredIdx === idx;
-            // Left to right stagger: they start shifted left, and unfold to their natural positions
-            const stepOffset = idx * -240 * (1 - scrollProgress);
+            // Bottom to top stagger: they start shifted down, and rise up to their natural positions
+            const stepOffset = (idx + 1) * 120 * (1 - scrollProgress);
             
             return (
               <div
                 key={service.title}
-                style={{ transform: `translateX(${stepOffset}px)` }}
+                style={{ transform: `translateY(${stepOffset}px)` }}
                 className={`group relative flex flex-col items-start p-8 md:p-10 border transition-colors duration-500 transition-transform ease-out cursor-pointer backdrop-blur-md bg-black/40 ${isHovered ? 'border-cooliocns-gold/60' : 'border-white/10 hover:border-cooliocns-gold/60'}`}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}

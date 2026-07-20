@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Button } from "./ui/Button";
 
 // High-impact SVG icons designed specifically for Raphael Autos Concierge Services
@@ -90,109 +91,96 @@ export const ConciergeServices = (): React.JSX.Element => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#0a0a0a] text-white py-24 md:py-32 px-6 md:px-12 lg:px-20 relative z-10 overflow-hidden" id="concierge">
-      {/* Decorative Abstract Background Elements */}
-      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-cooliocns-gold/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-white/5 blur-[100px] rounded-full pointer-events-none" />
+    <section className="relative text-white py-24 md:py-32 px-6 md:px-12 lg:px-20 z-10 overflow-hidden" id="concierge">
+      {/* Background Image */}
+      <Image
+        src="/images/about_details.png"
+        alt="Concierge Services"
+        fill
+        sizes="100vw"
+        className="object-cover object-center absolute inset-0 z-0"
+      />
       
-      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-10">
+      {/* Overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-black/75 z-0 pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center">
         
-        {/* Sticky Header Section */}
-        <div className="lg:w-5/12 flex flex-col justify-start">
-          <div className="lg:sticky lg:top-32">
-            <div className="inline-flex items-center gap-4 mb-6">
-              <div className="w-8 h-[1px] bg-cooliocns-gold"></div>
-              <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.3em] font-semibold">
-                Concierge Services
-              </span>
-            </div>
-            
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] mb-8">
-              An Ownership Experience Tailored to You
-            </h2>
-            
-            <p className="font-body text-sm md:text-base text-gray-400 leading-relaxed tracking-wide mb-12">
-              Whether you&apos;re purchasing your first luxury automobile or adding a rare collector&apos;s piece to your garage, our concierge team provides personalized assistance throughout every stage of the journey.
-            </p>
-            
-            <div className="hidden lg:block">
-              <Button
-                variant="solid-gold"
-                label="Discuss Requirements"
-                className="px-10 py-5 text-sm font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(201,162,39,0.2)] hover:shadow-[0_0_30px_rgba(201,162,39,0.4)] transition-shadow duration-500"
-                onClick={(e) => {
-                  e?.preventDefault();
-                  const el = document.getElementById("footer");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-              />
-            </div>
+        {/* Centered Header Section */}
+        <div className="flex flex-col items-center text-center max-w-3xl mb-16 md:mb-20">
+          <div className="inline-flex items-center justify-center gap-4 mb-6">
+            <div className="w-8 h-[1px] bg-cooliocns-gold"></div>
+            <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.3em] font-semibold">
+              Concierge Services
+            </span>
+            <div className="w-8 h-[1px] bg-cooliocns-gold"></div>
           </div>
+          
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] mb-6">
+            An Ownership Experience Tailored to You
+          </h2>
+          
+          <p className="font-body text-sm md:text-base text-gray-300 leading-relaxed tracking-wide mb-10">
+            Whether you&apos;re purchasing your first luxury automobile or adding a rare collector&apos;s piece to your garage, our concierge team provides personalized assistance throughout every stage of the journey.
+          </p>
+          
+          <Button
+            variant="solid-gold"
+            label="Discuss Requirements"
+            onClick={(e) => {
+              e?.preventDefault();
+              const el = document.getElementById("footer");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+          />
         </div>
 
-        {/* Services Interactive List */}
-        <div className="lg:w-7/12 flex flex-col">
+        {/* Services Grid (Single Row on Desktop) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
           {SERVICES_DATA.map((service, idx) => {
             const isHovered = hoveredIdx === idx;
             
             return (
               <div
                 key={service.title}
-                className={`group relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 py-10 md:py-14 border-t border-white/10 last:border-b transition-colors duration-500 cursor-pointer ${isHovered ? 'border-cooliocns-gold/40' : 'hover:border-cooliocns-gold/40'}`}
+                className={`group relative flex flex-col items-start p-8 md:p-10 border transition-all duration-500 cursor-pointer backdrop-blur-md bg-black/40 ${isHovered ? 'border-cooliocns-gold/60' : 'border-white/10 hover:border-cooliocns-gold/60'}`}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
                 {/* Number Background Indicator */}
-                <div className={`absolute left-0 md:-left-8 top-1/2 -translate-y-1/2 text-[120px] md:text-[160px] font-display font-light pointer-events-none select-none transition-all duration-700 ease-out ${isHovered ? 'text-white/5 md:-translate-x-4' : 'text-transparent md:translate-x-0'}`}>
+                <div className={`absolute top-4 right-4 text-[80px] font-display font-light pointer-events-none select-none transition-all duration-700 ease-out ${isHovered ? 'text-white/10' : 'text-transparent'}`}>
                   0{idx + 1}
                 </div>
 
-                {/* Number (visible on mobile or when not hovered as massive) */}
-                <div className="font-body text-xs text-cooliocns-gold/60 uppercase tracking-widest w-12 md:hidden">
-                  0{idx + 1}
+                <div className="font-body text-xs text-cooliocns-gold/60 uppercase tracking-widest mb-6 transition-opacity duration-300">
+                  Service 0{idx + 1}
                 </div>
 
                 {/* Icon Container */}
-                <div className={`relative z-10 shrink-0 size-16 md:size-24 rounded border flex items-center justify-center transition-all duration-500 ${isHovered ? 'bg-cooliocns-gold/10 border-cooliocns-gold/50 text-cooliocns-gold scale-110' : 'bg-white/5 border-white/10 text-white/70'}`}>
+                <div className={`relative z-10 shrink-0 size-16 rounded border flex items-center justify-center mb-8 transition-all duration-500 ${isHovered ? 'bg-cooliocns-gold/10 border-cooliocns-gold/50 text-cooliocns-gold scale-110' : 'bg-white/5 border-white/10 text-white/70'}`}>
                   {service.icon}
                 </div>
 
                 {/* Text Content */}
-                <div className="relative z-10 flex-1 md:pl-4">
-                  <div className="hidden md:block font-body text-xs text-cooliocns-gold/60 uppercase tracking-widest mb-3 transition-opacity duration-300">
-                    0{idx + 1} // Phase
-                  </div>
-                  <h3 className={`font-display text-2xl md:text-3xl mb-3 tracking-wide transition-colors duration-300 ${isHovered ? 'text-cooliocns-gold' : 'text-white'}`}>
+                <div className="relative z-10 flex-1">
+                  <h3 className={`font-display text-xl md:text-2xl mb-4 tracking-wide transition-colors duration-300 ${isHovered ? 'text-cooliocns-gold' : 'text-white'}`}>
                     {service.title}
                   </h3>
-                  <p className={`font-body text-sm md:text-base leading-relaxed max-w-lg transition-colors duration-300 ${isHovered ? 'text-gray-300' : 'text-gray-500'}`}>
+                  <p className={`font-body text-sm leading-relaxed transition-colors duration-300 ${isHovered ? 'text-gray-200' : 'text-gray-400'}`}>
                     {service.description}
                   </p>
                 </div>
 
-                {/* Arrow Indicator */}
-                <div className={`hidden md:flex relative z-10 shrink-0 w-12 h-12 rounded-full border items-center justify-center transition-all duration-500 transform ${isHovered ? 'border-cooliocns-gold bg-cooliocns-gold text-[#111111] translate-x-2' : 'border-white/10 text-white/30'}`}>
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {/* Arrow Indicator at bottom */}
+                <div className="mt-8 flex items-center justify-between w-full relative z-10">
+                  <div className={`h-[1px] bg-cooliocns-gold transition-all duration-500 ${isHovered ? 'w-12' : 'w-0'}`} />
+                  <svg className={`w-5 h-5 transition-all duration-500 transform ${isHovered ? 'text-cooliocns-gold translate-x-1' : 'text-white/30'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={isHovered ? 2 : 1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
               </div>
             );
           })}
-
-          {/* Mobile CTA */}
-          <div className="mt-16 lg:hidden">
-            <Button
-              variant="solid-gold"
-              label="Discuss Requirements"
-              className="w-full px-8 py-5 text-sm font-bold uppercase tracking-widest"
-              onClick={(e) => {
-                e?.preventDefault();
-                const el = document.getElementById("footer");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-            />
-          </div>
         </div>
 
       </div>
@@ -201,4 +189,3 @@ export const ConciergeServices = (): React.JSX.Element => {
 };
 
 export default ConciergeServices;
-

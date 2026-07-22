@@ -3,14 +3,16 @@
 import React from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 
 import { InventoryPageContent } from "@/components/InventoryPageContent";
 
 export default function InventoryPage() {
   return (
     <main className="min-h-screen bg-white">
+      <Navbar />
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-[#050505]">
+      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-[#050505] pt-24">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="/images/hero_rolls_royce.png"

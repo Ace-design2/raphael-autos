@@ -255,7 +255,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       <header
         className={`fixed top-0 left-0 right-0 z-40 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-in-out translate-y-0 opacity-100 pointer-events-auto ${
           isScrolled
-            ? "py-6 bg-black/[0.02] backdrop-blur-[100px] [-webkit-backdrop-filter:blur(100px)] border-b border-white/10 shadow-lg"
+            ? "py-6 bg-black/40 backdrop-blur-[100px] [-webkit-backdrop-filter:blur(100px)] border-b border-white/10 shadow-lg"
             : "py-6 bg-transparent border-b border-transparent shadow-none"
         }`}
       >
@@ -349,7 +349,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
 
         {/* Sliding Drawer */}
         <div
-          className={`relative w-full max-w-[580px] lg:max-w-[640px] xl:max-w-[720px] h-full min-h-screen px-6 md:px-16 py-6 bg-black/[0.02] backdrop-blur-[100px] [-webkit-backdrop-filter:blur(100px)] [transform:translateZ(0)] [backface-visibility:hidden] flex flex-col justify-between items-start text-white border-r border-white/15 shadow-[0_0_80px_rgba(0,0,0,0.9)] transition-transform duration-500 ease-out overflow-y-auto ${
+          className={`relative w-full max-w-[580px] lg:max-w-[640px] xl:max-w-[720px] h-full min-h-screen px-6 md:px-16 py-6 bg-black/40 backdrop-blur-[100px] [-webkit-backdrop-filter:blur(100px)] [transform:translateZ(0)] [backface-visibility:hidden] flex flex-col justify-between items-start text-white border-r border-white/15 shadow-[0_0_80px_rgba(0,0,0,0.9)] transition-transform duration-500 ease-out overflow-y-auto ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           style={{ transitionDelay: isMenuOpen ? "0ms" : "0ms" }}

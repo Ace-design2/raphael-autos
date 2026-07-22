@@ -291,6 +291,42 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
         <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8 ml-auto">
           <button
             type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("inventory");
+            }}
+            className="hidden sm:inline-block box-border font-body text-xs tracking-[0.15em] text-white hover:text-cooliocns-gold transition-colors cursor-pointer bg-transparent border-0 p-0"
+          >
+            MODELS
+          </button>
+
+          {/* Original search bar design - hidden on mobile */}
+          <form
+            role="search"
+            className="hidden md:flex items-center gap-2 px-2 py-1 border-b border-white/30 focus-within:border-cooliocns-gold transition-colors max-w-[120px] md:max-w-[200px]"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <label htmlFor={searchId} className="inline-flex items-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors">
+              <SearchMagnifyingGlass className="w-4 h-4" />
+            </label>
+            <input
+              id={searchId}
+              type="search"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                if (e.target.value.length === 1) {
+                  scrollToSection("inventory");
+                }
+              }}
+              placeholder="SEARCH"
+              aria-label="Search vehicles"
+              className="bg-transparent border-none outline-none font-body text-xs text-white placeholder:text-white/50 tracking-wider w-full"
+            />
+          </form>
+
+          <button
+            type="button"
             aria-label="Open user account"
             className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >

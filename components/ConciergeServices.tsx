@@ -183,16 +183,20 @@ export const ConciergeServices = (): React.JSX.Element => {
                   Service 0{idx + 1}
                 </div>
 
-                {/* Icon Container */}
-                <div className={`relative z-10 shrink-0 size-16 rounded border flex items-center justify-center mb-8 transition-all duration-500 ${isHovered ? 'bg-cooliocns-gold/10 border-cooliocns-gold/50 text-cooliocns-gold' : 'bg-white/5 border-white/10 text-white/70'}`}>
-                  {service.icon}
+                {/* Header (Icon + Title) */}
+                <div className="relative z-10 flex items-center gap-4 mb-4">
+                  {/* Icon Container */}
+                  <div className={`shrink-0 size-10 rounded border flex items-center justify-center transition-all duration-500 [&_svg]:!w-5 [&_svg]:!h-5 ${isHovered ? 'bg-cooliocns-gold/10 border-cooliocns-gold/50 text-cooliocns-gold' : 'bg-white/5 border-white/10 text-white/70'}`}>
+                    {service.icon}
+                  </div>
+                  {/* Title */}
+                  <h3 className={`font-display text-xl md:text-2xl tracking-wide transition-colors duration-300 ${isHovered ? 'text-cooliocns-gold' : 'text-white'}`}>
+                    {service.title}
+                  </h3>
                 </div>
 
                 {/* Text Content */}
                 <div className="relative z-10 flex-1">
-                  <h3 className={`font-display text-xl md:text-2xl mb-4 tracking-wide transition-colors duration-300 ${isHovered ? 'text-cooliocns-gold' : 'text-white'}`}>
-                    {service.title}
-                  </h3>
                   <p className={`font-body text-sm leading-relaxed transition-colors duration-300 ${isHovered ? 'text-gray-200' : 'text-gray-400'}`}>
                     {service.description}
                   </p>

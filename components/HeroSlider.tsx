@@ -255,7 +255,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
       <header
         className={`fixed top-0 left-0 right-0 z-40 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300 ease-in-out translate-y-0 opacity-100 pointer-events-auto ${
           isScrolled
-            ? "py-3 bg-black/35 backdrop-blur-3xl [-webkit-backdrop-filter:blur(48px)] border-b border-white/10 shadow-lg"
+            ? "py-6 bg-black/35 backdrop-blur-3xl [-webkit-backdrop-filter:blur(48px)] border-b border-white/10 shadow-lg"
             : "py-6 bg-transparent border-b border-transparent shadow-none"
         }`}
       >

@@ -379,9 +379,8 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             {/* Main Links */}
             <nav className="self-stretch flex flex-col justify-start items-start gap-3 mt-2">
               {[
+                { label: "HOME", id: "hero" },
                 { label: "INVENTORY", href: "/inventory" },
-                { label: "BUY", id: "collections" },
-                { label: "LEASE", id: "collections" },
                 { label: "VEHICLE SOURCING", id: "about" },
                 { label: "SELL & TRADE IN", id: "about" },
               ].map((item, idx) => (

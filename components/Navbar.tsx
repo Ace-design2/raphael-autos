@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useId } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { MenuAlt04, CloseMD, SearchMagnifyingGlass, User03, ChevronRight, MailIcon, PhoneIcon } from "./icons";
+import { MenuAlt04, CloseMD, SearchMagnifyingGlass, User03, ChevronRight, MailIcon, PhoneIcon, HomeIcon } from "./icons";
 import { Button } from "./ui/Button";
 
 export const Navbar = ({ searchQuery = "", setSearchQuery }: { searchQuery?: string; setSearchQuery?: (query: string) => void }): React.JSX.Element => {
@@ -141,6 +141,21 @@ export const Navbar = ({ searchQuery = "", setSearchQuery }: { searchQuery?: str
         <nav aria-label="Primary" className="flex items-center gap-4 md:gap-8 ml-auto">
           <button
             type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              if (pathname !== "/") {
+                router.push("/");
+              } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="hidden sm:inline-block box-border font-body text-xs tracking-[0.15em] text-white hover:text-cooliocns-gold transition-colors cursor-pointer bg-transparent border-0 p-1"
+          >
+            <HomeIcon className="w-7 h-7" />
+          </button>
+
+          <button
+            type="button"
             aria-label="Open user account"
             className="box-border inline-flex items-center justify-center cursor-pointer text-white hover:text-cooliocns-gold transition-colors p-1 bg-transparent border-0"
           >
@@ -193,9 +208,8 @@ export const Navbar = ({ searchQuery = "", setSearchQuery }: { searchQuery?: str
             {/* Main Links */}
             <nav className="self-stretch flex flex-col justify-start items-start gap-3 mt-2">
               {[
+                { label: "HOME", id: "hero", href: "/" },
                 { label: "INVENTORY", id: "inventory", href: "/inventory" },
-                { label: "BUY", id: "collections" },
-                { label: "LEASE", id: "collections" },
                 { label: "VEHICLE SOURCING", id: "about" },
                 { label: "SELL & TRADE IN", id: "about" },
               ].map((item, idx) => (

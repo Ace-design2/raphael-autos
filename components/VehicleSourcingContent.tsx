@@ -33,14 +33,16 @@ export const VehicleSourcingContent = () => {
               {/* Introduction */}
               <div className="text-center mb-16 md:mb-24">
                 <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1] mb-8">
-                  Tell Us What You're Looking For
+                  Tell Us What You&apos;re Looking For
                 </h2>
-                <p className="font-body text-sm md:text-base text-gray-400 max-w-3xl mx-auto leading-relaxed mb-6">
-                  Complete the form below with as much detail as possible. The more information you provide, the better we can understand your requirements and begin the search through our trusted network of dealers, collectors, and industry partners.
-                </p>
-                <p className="font-body text-sm md:text-base text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                  Our team will review your request and contact you personally to discuss availability, timelines, and suitable options.
-                </p>
+                <div className="max-w-3xl mx-auto text-left">
+                  <p className="font-body text-sm md:text-base text-gray-400 leading-relaxed mb-6">
+                    Complete the form below with as much detail as possible. The more information you provide, the better we can understand your requirements and begin the search through our trusted network of dealers, collectors, and industry partners.
+                  </p>
+                  <p className="font-body text-sm md:text-base text-gray-400 leading-relaxed">
+                    Our team will review your request and contact you personally to discuss availability, timelines, and suitable options.
+                  </p>
+                </div>
               </div>
 
               {/* Vehicle Sourcing Form */}
@@ -76,8 +78,8 @@ export const VehicleSourcingContent = () => {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="font-body text-xs uppercase tracking-widest text-gray-400">Preferred Contact Method</label>
-                      <select required className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
-                        <option value="" disabled selected className="text-white/20">Select an option...</option>
+                      <select required defaultValue="" className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
+                        <option value="" disabled className="text-white/20">Select an option...</option>
                         <option value="phone">Phone Call</option>
                         <option value="email">Email</option>
                         <option value="whatsapp">WhatsApp</option>
@@ -108,8 +110,8 @@ export const VehicleSourcingContent = () => {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="font-body text-xs uppercase tracking-widest text-gray-400">Condition</label>
-                      <select required className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
-                        <option value="" disabled selected className="text-white/20">Select an option...</option>
+                      <select required defaultValue="" className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
+                        <option value="" disabled className="text-white/20">Select an option...</option>
                         <option value="new">New</option>
                         <option value="cpo">Certified Pre-Owned</option>
                         <option value="pre-owned">Pre-Owned</option>
@@ -137,8 +139,8 @@ export const VehicleSourcingContent = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col gap-2">
                       <label className="font-body text-xs uppercase tracking-widest text-gray-400">Fuel Type</label>
-                      <select className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
-                        <option value="" disabled selected className="text-white/20">Select an option...</option>
+                      <select defaultValue="" className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
+                        <option value="" disabled className="text-white/20">Select an option...</option>
                         <option value="petrol">Petrol</option>
                         <option value="hybrid">Hybrid</option>
                         <option value="electric">Electric</option>
@@ -147,8 +149,8 @@ export const VehicleSourcingContent = () => {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="font-body text-xs uppercase tracking-widest text-gray-400">Transmission</label>
-                      <select className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
-                        <option value="" disabled selected className="text-white/20">Select an option...</option>
+                      <select defaultValue="" className="bg-[#111111] border-b border-white/20 py-3 text-white focus:outline-none focus:border-cooliocns-gold transition-colors font-body text-sm appearance-none cursor-pointer">
+                        <option value="" disabled className="text-white/20">Select an option...</option>
                         <option value="automatic">Automatic</option>
                         <option value="manual">Manual</option>
                         <option value="no-preference">No Preference</option>
@@ -236,7 +238,7 @@ export const VehicleSourcingContent = () => {
               {
                 step: "Step 4",
                 title: "Recommendation",
-                desc: "You'll receive carefully selected options along with guidance to help you make an informed decision."
+                desc: "You&apos;ll receive carefully selected options along with guidance to help you make an informed decision."
               }
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center text-center group">
@@ -294,7 +296,7 @@ export const VehicleSourcingContent = () => {
             Your Next Exceptional Automobile Starts Here
           </h2>
           <p className="font-body text-sm md:text-base text-gray-400 leading-relaxed tracking-wide mb-12">
-            Whether you're searching for a modern performance icon, a luxury SUV, or a rare collector's vehicle, we're committed to helping you find the right automobile with the attention to detail and personalized service you deserve.
+            Whether you&apos;re searching for a modern performance icon, a luxury SUV, or a rare collector's vehicle, we're committed to helping you find the right automobile with the attention to detail and personalized service you deserve.
           </p>
           <Button
             variant="solid-gold"

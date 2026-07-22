@@ -118,17 +118,18 @@ export const ConciergeServices = (): React.JSX.Element => {
 
   return (
     <section ref={sectionRef} className="relative text-white py-24 md:py-32 px-6 md:px-12 lg:px-20 z-10 overflow-hidden" id="concierge">
-      {/* Background Image */}
-      <Image
-        src="/images/about_details.png"
-        alt="Concierge Services"
-        fill
-        sizes="100vw"
-        className="object-cover object-center absolute inset-0 z-0"
-      />
-      
-      {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-black/75 z-0 pointer-events-none" />
+      {/* Background Image with Dark Vignette Gradients */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/about_details.png"
+          alt="Concierge Services"
+          fill
+          sizes="100vw"
+          className="object-cover object-center brightness-[0.4] contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/70 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/80 via-[#111111]/40 to-[#111111]/80" />
+      </div>
 
       <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center">
         
@@ -147,7 +148,7 @@ export const ConciergeServices = (): React.JSX.Element => {
           </p>
           
           <Button
-            variant="solid-gold"
+            variant="outline-white"
             label="Discuss Requirements"
             className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.25em]"
             onClick={(e) => {

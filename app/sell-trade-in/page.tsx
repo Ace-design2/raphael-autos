@@ -33,7 +33,7 @@ export default function SellTradeInPage() {
             Receive a Professional Vehicle Evaluation
           </h1>
           <p className="mt-6 text-gray-300 font-body text-sm md:text-base max-w-xl mx-auto leading-relaxed tracking-wide">
-            Whether you&apos;re looking to sell your current vehicle or trade it toward your next luxury automobile, Raphael Autos offers a straightforward and discreet evaluation process. Share your vehicle details below, and one of our specialists will contact you with the next steps.
+            Raphael Autos offers a straightforward and discreet evaluation process, whether you&apos;re selling your current vehicle or trading it in.
           </p>
         </div>
       </section>

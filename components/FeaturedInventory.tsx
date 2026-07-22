@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "./ui/Button";
 import { CarAuto, ChevronRightDuo } from "./icons";
@@ -66,6 +67,8 @@ interface FeaturedInventoryProps {
 }
 
 export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): React.JSX.Element => {
+  const router = useRouter();
+
   // Simple case-insensitive filtering
   const filteredVehicles = VEHICLES_MOCK.filter(
     (car) =>
@@ -217,7 +220,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
 
         {/* View all button */}
         <div className="mt-16 text-center">
-          <Button variant="outline-black" label="View Full Inventory" className="px-10" />
+          <Button variant="outline-black" label="View Full Inventory" className="px-10" onClick={() => router.push("/inventory")} />
         </div>
       </div>
     </section>

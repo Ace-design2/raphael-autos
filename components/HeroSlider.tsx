@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useId } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "./ui/Button";
 import {
@@ -111,6 +112,7 @@ interface HeroSliderProps {
 }
 
 export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): React.JSX.Element => {
+  const router = useRouter();
   const [activeSlide, setActiveSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -377,7 +379,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
             {/* Main Links */}
             <nav className="self-stretch flex flex-col justify-start items-start gap-3 mt-2">
               {[
-                { label: "INVENTORY", id: "inventory" },
+                { label: "INVENTORY", href: "/inventory" },
                 { label: "BUY", id: "collections" },
                 { label: "LEASE", id: "collections" },
                 { label: "VEHICLE SOURCING", id: "about" },
@@ -385,11 +387,15 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               ].map((item, idx) => (
                 <a
                   key={idx}
-                  href={`#${item.id}`}
+                  href={item.href || `#${item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMenuOpen(false);
-                    scrollToSection(item.id);
+                    if (item.href) {
+                      router.push(item.href);
+                    } else if (item.id) {
+                      scrollToSection(item.id);
+                    }
                   }}
                   className={`self-stretch inline-flex justify-start items-center gap-6 group py-1.5 cursor-pointer ${getWaterfallClass(idx + 1)}`}
                 >

@@ -34,22 +34,22 @@ export const Testimonials = (): React.JSX.Element => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
           {testimonials.map((item, idx) => (
             <div 
               key={idx}
-              className="relative p-10 md:p-14 lg:p-16 border border-black/10 bg-[#fafafa] flex flex-col justify-between"
+              className="relative p-8 md:p-10 lg:p-12 border border-black/10 bg-[#fafafa] flex flex-col justify-between"
             >
               {/* Large Quote SVG Mark */}
-              <div className="absolute top-8 left-8 text-cooliocns-gold/20">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <div className="absolute top-6 left-6 text-cooliocns-gold/20">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" />
                 </svg>
               </div>
 
               {/* Quote Text */}
-              <div className="relative z-10 pt-10 mb-12">
-                <p className="font-display text-xl md:text-2xl lg:text-3xl text-gray-800 leading-snug tracking-wide">
+              <div className="relative z-10 pt-6 mb-8">
+                <p className="font-display text-lg md:text-xl lg:text-2xl text-gray-800 leading-snug tracking-wide">
                   &quot;{item.quote}&quot;
                 </p>
               </div>

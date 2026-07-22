@@ -211,7 +211,7 @@ export const Navbar = ({ searchQuery = "", setSearchQuery }: { searchQuery?: str
                 { label: "HOME", id: "hero", href: "/" },
                 { label: "INVENTORY", id: "inventory", href: "/inventory" },
                 { label: "VEHICLE SOURCING", id: "sourcing", href: "/vehicle-sourcing" },
-                { label: "SELL & TRADE IN", id: "about" },
+                { label: "SELL & TRADE IN", id: "sell-trade-in", href: "/sell-trade-in" },
               ].map((item, idx) => (
                 <a
                   key={idx}

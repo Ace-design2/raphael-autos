@@ -382,7 +382,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
                 { label: "HOME", id: "hero" },
                 { label: "INVENTORY", href: "/inventory" },
                 { label: "VEHICLE SOURCING", href: "/vehicle-sourcing" },
-                { label: "SELL & TRADE IN", id: "about" },
+                { label: "SELL & TRADE IN", href: "/sell-trade-in" },
               ].map((item, idx) => (
                 <a
                   key={idx}

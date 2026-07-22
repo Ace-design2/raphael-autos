@@ -381,7 +381,7 @@ export const HeroSlider = ({ searchQuery, setSearchQuery }: HeroSliderProps): Re
               {[
                 { label: "HOME", id: "hero" },
                 { label: "INVENTORY", href: "/inventory" },
-                { label: "VEHICLE SOURCING", id: "about" },
+                { label: "VEHICLE SOURCING", href: "/vehicle-sourcing" },
                 { label: "SELL & TRADE IN", id: "about" },
               ].map((item, idx) => (
                 <a

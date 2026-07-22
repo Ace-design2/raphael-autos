@@ -153,8 +153,7 @@ export const ConciergeServices = (): React.JSX.Element => {
             className="px-8 py-3.5 text-xs font-bold uppercase tracking-[0.25em]"
             onClick={(e) => {
               e?.preventDefault();
-              const el = document.getElementById("footer");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
+              window.location.href = "/vehicle-sourcing";
             }}
           />
         </div>

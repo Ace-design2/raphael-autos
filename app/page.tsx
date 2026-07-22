@@ -6,6 +6,8 @@ import FeaturedCollections from "@/components/FeaturedCollections";
 import FeaturedInventory from "@/components/FeaturedInventory";
 import AboutPreview from "@/components/AboutPreview";
 import ConciergeServices from "@/components/ConciergeServices";
+import Testimonials from "@/components/Testimonials";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 
@@ -43,6 +45,12 @@ export default function Home() {
 
         {/* Concierge Services Section */}
         <ConciergeServices />
+
+        {/* Testimonials Section */}
+        <Testimonials />
+        
+        {/* Final CTA Section */}
+        <FinalCTA />
       </main>
 
       {/* Luxury Footer */}

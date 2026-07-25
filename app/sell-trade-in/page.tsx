@@ -30,7 +30,7 @@ export default function SellTradeInPage() {
             Sell & Trade-In
           </span>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-tight font-normal leading-[1.05]">
-            Receive a Professional Vehicle Evaluation
+            Vehicle Evaluation
           </h1>
           <p className="mt-6 text-gray-300 font-body text-sm md:text-base max-w-xl mx-auto leading-relaxed tracking-wide">
             Raphael Autos offers a straightforward and discreet evaluation process, whether you&apos;re selling your current vehicle or trading it in.

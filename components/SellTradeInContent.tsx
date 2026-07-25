@@ -241,11 +241,9 @@ export const SellTradeInContent = () => {
                           </li>
                         ))}
                       </ul>
-                      <div className="p-4 bg-cooliocns-gold/10 border-l-2 border-cooliocns-gold">
-                        <p className="font-body text-xs text-cooliocns-gold/80 italic">
-                          High-quality photographs allow our specialists to provide a more accurate initial assessment.
-                        </p>
-                      </div>
+                      <p className="font-body text-xs text-gray-400 italic">
+                        High-quality photographs allow our specialists to provide a more accurate initial assessment.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -335,32 +333,45 @@ export const SellTradeInContent = () => {
       </section>
 
       {/* REASSURANCE SECTION */}
-      <section className="w-full px-6 md:px-16 lg:px-24 py-24 md:py-32 bg-white border-t border-black/5">
-        <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center gap-16">
-          <div className="w-full lg:w-1/2">
-            <h2 className="font-display text-4xl md:text-5xl text-[#111111] tracking-tight leading-[1.1] mb-8">
-              Why Sell with Raphael Autos?
-            </h2>
+      <section className="w-full bg-white py-24 px-6 md:px-20 border-t border-black/10 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-xl">
+              <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
+                The Raphael Standard
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-wide">
+                Why Sell With Us?
+              </h2>
+            </div>
+            <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
+              Experience a seamless, transparent, and rewarding process designed specifically for premium vehicle owners.
+            </p>
           </div>
-          <div className="w-full lg:w-1/2">
-            <ul className="flex flex-col gap-8">
-              {[
-                { title: "Expert Valuations", desc: "Every assessment is carried out with attention to market conditions, vehicle history, and overall specification." },
-                { title: "Discreet Service", desc: "We handle every inquiry with professionalism, privacy, and respect for your time." },
-                { title: "Luxury Market Expertise", desc: "Our team specializes in premium and prestige vehicles, ensuring your automobile is evaluated by people who understand its value." },
-                { title: "Trade-In Flexibility", desc: "If you&apos;re considering your next vehicle, we'll help make the transition as seamless as possible." }
-              ].map((point, idx) => (
-                <li key={idx} className="flex flex-col gap-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cooliocns-gold shrink-0" />
-                    <h4 className="font-display text-xl text-[#111111]">{point.title}</h4>
-                  </div>
-                  <p className="font-body text-sm md:text-base text-gray-600 leading-relaxed pl-4 border-l border-black/10 ml-0.5">
-                    {point.desc}
-                  </p>
-                </li>
-              ))}
-            </ul>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+            {[
+              { title: "Expert Valuations", desc: "Every assessment is carried out with attention to market conditions, vehicle history, and overall specification." },
+              { title: "Discreet Service", desc: "We handle every inquiry with professionalism, privacy, and respect for your time." },
+              { title: "Luxury Expertise", desc: "Our team specializes in premium and prestige vehicles, evaluating them with true understanding." },
+              { title: "Trade-In Flexibility", desc: "If you're considering your next vehicle, we'll help make the transition as seamless as possible." }
+            ].map((point, idx) => (
+              <div 
+                key={idx} 
+                className="w-full bg-white outline outline-1 outline-offset-[-1px] outline-black/10 hover:outline-[#111111] flex flex-col justify-start items-start p-8 md:p-10 transition-all duration-300 group"
+              >
+                <div className="font-display text-4xl text-gray-300 mb-8 group-hover:text-cooliocns-gold transition-colors duration-300">
+                  0{idx + 1}
+                </div>
+                <h4 className="font-display text-2xl text-[#111111] mb-4">
+                  {point.title}
+                </h4>
+                <p className="font-body text-sm text-gray-600 leading-relaxed">
+                  {point.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -115,4 +115,20 @@ body {
   animation: slideZoom 15s ease-out forwards;
 }
 
+@keyframes stepForward {
+  0% { opacity: 0; transform: translateX(24px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.animate-step-forward {
+  animation: stepForward 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stepBack {
+  0% { opacity: 0; transform: translateX(-24px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.animate-step-back {
+  animation: stepBack 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 

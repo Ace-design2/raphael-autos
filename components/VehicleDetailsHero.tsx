@@ -76,39 +76,46 @@ export const VehicleDetailsHero = ({
 
   return (
     <div className="relative w-full h-screen min-h-[800px] bg-[#111111] overflow-hidden flex flex-col justify-between">
+      <style>{`
+        @keyframes heroZoom {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.1); }
+        }
+        .animate-hero-zoom {
+          animation: heroZoom 30s ease-out forwards;
+        }
+      `}</style>
+      
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Image
           src={mainImage}
           alt={title}
           fill
           priority
           sizes="100vw"
-          className="object-cover brightness-[0.7]"
+          className="object-cover brightness-[0.55] animate-hero-zoom"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/40" />
+        {/* Ambient Gold Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0804] via-[#111111]/40 to-transparent" />
       </div>
 
-      {/* 3D View Badges */}
-      <div className="absolute top-32 sm:top-36 md:top-28 left-0 right-0 md:left-auto md:right-20 w-full md:w-auto z-30 pointer-events-none flex justify-center md:justify-end items-center gap-6 md:gap-4">
-        <button className="pointer-events-auto flex items-center gap-2 bg-transparent border-none p-0 text-white hover:text-cooliocns-gold transition-colors group cursor-pointer">
-          <svg className="w-4 h-4 text-white group-hover:text-cooliocns-gold transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-          </svg>
-          <span className="font-body text-xs font-bold tracking-[0.2em] uppercase text-white group-hover:text-cooliocns-gold transition-colors">Exterior</span>
-        </button>
-        <div className="w-[1px] h-4 bg-white/40"></div>
-        <button className="pointer-events-auto flex items-center gap-2 bg-transparent border-none p-0 text-white hover:text-cooliocns-gold transition-colors group cursor-pointer">
-          <svg className="w-4 h-4 text-white group-hover:text-cooliocns-gold transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M2 12h20"></path>
-            <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
-            <path d="M4 12V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          <span className="font-body text-xs font-bold tracking-[0.2em] uppercase text-white group-hover:text-cooliocns-gold transition-colors">Interior</span>
-        </button>
+      {/* Technical Blueprint Accents (Left/Right Edges) */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden md:flex flex-col gap-40">
+        <div className="font-mono text-[10px] text-white/40 tracking-[0.3em] -rotate-90 origin-left whitespace-nowrap">
+          VIN // WP0AC2Y324BS12
+        </div>
+        <div className="font-mono text-[10px] text-white/40 tracking-[0.3em] -rotate-90 origin-left whitespace-nowrap">
+          STOCK // R-911-GT3
+        </div>
+      </div>
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden md:flex flex-col gap-40">
+        <div className="font-mono text-[10px] text-white/40 tracking-[0.3em] rotate-90 origin-right whitespace-nowrap">
+          LAT 48.8353° N
+        </div>
+        <div className="font-mono text-[10px] text-white/40 tracking-[0.3em] rotate-90 origin-right whitespace-nowrap">
+          LON 9.1526° E
+        </div>
       </div>
 
       <Navbar />
@@ -122,7 +129,7 @@ export const VehicleDetailsHero = ({
                 {price}
               </div>
             )}
-            <h1 className="text-white/80 text-xl sm:text-2xl md:text-3xl font-body tracking-widest uppercase mt-1">
+            <h1 className="text-white/90 text-xl sm:text-2xl md:text-3xl font-body tracking-widest uppercase mt-2">
               {title}
             </h1>
             

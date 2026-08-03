@@ -63,10 +63,18 @@ const VEHICLES_MOCK: Vehicle[] = [
 ];
 
 interface FeaturedInventoryProps {
-  searchQuery: string;
+  searchQuery?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
 }
 
-export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): React.JSX.Element => {
+export const FeaturedInventory = ({ 
+  searchQuery = "", 
+  title = "Featured Inventory",
+  subtitle = "Showcase",
+  description = "A handpicked selection of exceptional automobiles currently available through Raphael Autos."
+}: FeaturedInventoryProps): React.JSX.Element => {
   const router = useRouter();
 
   // Simple case-insensitive filtering
@@ -93,14 +101,14 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
             <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.25em] font-semibold mb-3 block">
-              Showcase
+              {subtitle}
             </span>
             <h2 className="font-display text-3xl md:text-5xl text-[#111111] font-normal tracking-wide">
-              Featured Inventory
+              {title}
             </h2>
           </div>
           <p className="font-body text-sm text-gray-600 max-w-md leading-relaxed tracking-wide">
-            A handpicked selection of exceptional automobiles currently available through Raphael Autos.
+            {description}
           </p>
         </div>
 

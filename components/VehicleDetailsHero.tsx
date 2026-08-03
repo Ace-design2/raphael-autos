@@ -131,12 +131,12 @@ export const VehicleDetailsHero = ({
             <Button
               variant="solid-gold"
               label="BUY"
-              className="flex-none w-32 sm:w-40 md:w-36 justify-center px-4 sm:px-6 py-3.5 md:py-3 text-sm md:text-base font-bold tracking-wider"
+              className="flex-1 sm:flex-none sm:w-36 md:w-36 justify-center px-4 sm:px-6 py-3.5 md:py-3 text-sm md:text-base font-bold tracking-wider"
             />
             <Button
               variant="outline-white"
               label="LEASE"
-              className="flex-none w-32 sm:w-40 md:w-36 justify-center px-4 sm:px-6 py-3.5 md:py-3 text-sm md:text-base font-bold tracking-wider"
+              className="flex-1 sm:flex-none sm:w-36 md:w-36 justify-center px-4 sm:px-6 py-3.5 md:py-3 text-sm md:text-base font-bold tracking-wider"
             />
           </div>
         </div>
@@ -252,16 +252,16 @@ export const VehicleDetailsHero = ({
             </button>
 
             {/* CTAs in Gallery */}
-            <div className="absolute bottom-6 md:bottom-8 left-0 right-0 z-30 flex flex-row justify-center gap-3 md:gap-4 pointer-events-auto">
+            <div className="absolute bottom-6 md:bottom-8 left-4 right-4 md:left-0 md:right-0 z-30 flex flex-row justify-center gap-3 md:gap-4 pointer-events-auto">
               <Button
                 variant="solid-gold"
                 label="BUY"
-                className="flex-none w-32 justify-center px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold tracking-wider shadow-xl shadow-black/50"
+                className="flex-1 md:flex-none w-auto md:w-32 justify-center px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold tracking-wider shadow-xl shadow-black/50"
               />
               <Button
                 variant="outline-white"
                 label="LEASE"
-                className="flex-none w-32 justify-center px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold tracking-wider bg-black/40 backdrop-blur-md"
+                className="flex-1 md:flex-none w-auto md:w-32 justify-center px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-bold tracking-wider bg-black/40 backdrop-blur-md"
               />
             </div>
           </div>

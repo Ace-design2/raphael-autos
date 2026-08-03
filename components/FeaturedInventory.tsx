@@ -198,6 +198,7 @@ export const FeaturedInventory = ({ searchQuery }: FeaturedInventoryProps): Reac
                       variant="outline-black"
                       label="View Details"
                       className="flex-1 justify-center px-3 sm:px-4 py-2.5 text-sm sm:text-base font-bold"
+                      onClick={() => router.push(`/inventory/${car.id}`)}
                     />
                   </div>
                 </div>

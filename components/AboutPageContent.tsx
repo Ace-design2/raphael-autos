@@ -32,7 +32,7 @@ export const AboutPageContent = () => {
         <div className="w-full max-w-5xl flex flex-col md:flex-row gap-12 md:gap-24 items-start">
           {/* Left: Minimal Heading */}
           <div className="w-full md:w-1/3 flex flex-col items-start pt-2">
-            <div className="w-8 h-[1px] bg-black mb-6" />
+            <div className="w-8 h-[2px] bg-cooliocns-gold mb-6" />
             <h2 className="font-display text-3xl md:text-5xl text-black tracking-tight leading-[1.1]">
               Curated<br /> Without<br /> Compromise.
             </h2>
@@ -40,7 +40,7 @@ export const AboutPageContent = () => {
 
           {/* Right: Editorial Copy with Drop Cap */}
           <div className="w-full md:w-2/3">
-            <p className="font-body text-base md:text-lg text-gray-800 leading-relaxed font-light first-letter:text-6xl first-letter:font-display first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:leading-none first-letter:text-black">
+            <p className="font-body text-base md:text-lg text-gray-800 leading-relaxed font-light first-letter:text-6xl first-letter:font-display first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:leading-none first-letter:text-cooliocns-gold">
               Raphael Autos was founded on a singular principle: connecting the most discerning collectors and enthusiasts with motor cars of unparalleled pedigree. We do not simply sell cars; we curate an experience that honors the engineering, history, and artistry of the vehicles we represent.
             </p>
             <p className="font-body text-base md:text-lg text-gray-800 leading-relaxed font-light mt-6">

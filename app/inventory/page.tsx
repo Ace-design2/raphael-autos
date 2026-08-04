@@ -12,29 +12,34 @@ export default function InventoryPage() {
     <main className="min-h-screen bg-white">
       <Navbar />
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-[#050505] pt-24">
+      <section className="relative w-full h-screen min-h-[580px] sm:min-h-[650px] md:min-h-[700px] overflow-hidden flex flex-col justify-between select-none bg-[#111111]">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="/images/hero_rolls_royce.png"
             alt="Inventory Background"
             fill
             sizes="100vw"
-            className="object-cover object-center brightness-[0.35]"
+            className="object-cover object-center brightness-[0.7]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/20" />
         </div>
-        
-        <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <span className="font-body text-xs text-cooliocns-gold uppercase tracking-[0.4em] font-semibold mb-6 block">
-            Discover Our Collection
-          </span>
-          <h1 className="font-display text-5xl md:text-7xl text-white tracking-tight font-normal leading-[1.05]">
-            Inventory
-          </h1>
-          <p className="mt-6 text-gray-300 font-body text-sm md:text-base max-w-xl mx-auto leading-relaxed tracking-wide">
-            Explore our curated selection of high-performance and luxury vehicles, meticulously inspected to meet the highest standards.
-          </p>
+
+        {/* Content — bottom-left aligned, matching home/sell heroes */}
+        <div className="relative z-10 flex-1 flex flex-col justify-end px-4 sm:px-8 md:px-20 pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-8 md:pb-12 gap-6 sm:gap-8 md:gap-12">
+          <div className="max-w-2xl flex flex-col items-start gap-3 sm:gap-5 md:gap-6 animate-fade-in">
+            <span className="font-body text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-cooliocns-gold font-bold">
+              Discover Our Collection
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.15] sm:leading-tight font-light tracking-tight sm:tracking-normal">
+              Inventory
+            </h1>
+            <p className="font-body text-xs sm:text-sm text-gray-300 leading-relaxed font-light tracking-wide max-w-xl">
+              Explore our curated selection of high-performance and luxury vehicles, meticulously inspected to meet the highest standards.
+            </p>
+          </div>
         </div>
       </section>
 

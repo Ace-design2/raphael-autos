@@ -27,9 +27,7 @@ export const Navbar = ({ searchQuery = "", setSearchQuery }: { searchQuery?: str
         }
       }
 
-      if (pathname !== "/") {
-        setIsScrolled(true);
-      } else if (currentScrollY > heroSectionHeight && !isOverAbout) {
+      if (currentScrollY > heroSectionHeight && !isOverAbout) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);

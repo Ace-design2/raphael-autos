@@ -84,6 +84,20 @@ export const VehicleDetailsHero = ({
         .animate-hero-zoom {
           animation: heroZoom 30s ease-out forwards;
         }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUpFade {
+          from { opacity: 0; transform: translateY(20px) scale(0.98); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
+        }
+        .animate-gallery-content {
+          animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
       `}</style>
       
       {/* Background Image */}
@@ -160,7 +174,7 @@ export const VehicleDetailsHero = ({
                 src={getUrl(thumb)} 
                 alt={`Thumbnail ${index + 1}`} 
                 fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out brightness-75 group-hover:brightness-100"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
             </div>
@@ -185,9 +199,9 @@ export const VehicleDetailsHero = ({
 
       {/* Full-Screen Gallery Modal */}
       {isGalleryOpen && (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-black/95 backdrop-blur-2xl">
+        <div className="fixed inset-0 z-[100] flex flex-col bg-black/95 backdrop-blur-2xl animate-fade-in">
           {/* Top Bar */}
-          <div className="w-full flex justify-between items-center px-4 md:px-12 py-6 absolute top-0 z-10 pointer-events-none">
+          <div className="w-full flex justify-between items-center px-4 md:px-12 py-6 absolute top-0 z-10 pointer-events-none animate-gallery-content">
             <div className="text-white font-body text-xs md:text-sm tracking-widest uppercase w-16 md:w-24">
               {filteredThumbnails.findIndex(t => t.originalIndex === currentImageIndex) + 1} / {filteredThumbnails.length}
             </div>
@@ -228,7 +242,7 @@ export const VehicleDetailsHero = ({
           </div>
 
           {/* Main Image Area */}
-          <div className="flex-1 relative flex items-center justify-center w-full px-4 md:px-20 select-none" onClick={closeGallery}>
+          <div className="flex-1 relative flex items-center justify-center w-full px-4 md:px-20 select-none animate-gallery-content" onClick={closeGallery}>
             {/* Prev Arrow */}
             <button 
               onClick={prevImage}

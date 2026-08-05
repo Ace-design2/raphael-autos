@@ -111,7 +111,7 @@ export const InventoryPageContent = () => {
           <p className="font-body text-sm text-gray-500 uppercase tracking-widest">
             Showing 0 Vehicles
           </p>
-          <div className="flex items-center gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <Button variant="outline-black" label="Reset Filters" className="w-full sm:w-auto px-8 py-3 text-xs tracking-widest" />
             <Button variant="solid-gold" label="Apply Filters" className="w-full sm:w-auto px-8 py-3 text-xs tracking-widest" />
           </div>
